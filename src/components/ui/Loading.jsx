@@ -1,11 +1,11 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
-const Loading = ({ fullScreen = false, message = '', size = 'medium' }) => {
+const Loading = ({ fullScreen = false, message = "", size = "medium" }) => {
   const sizes = {
-    small: 'w-1 h-1',
-    medium: 'w-1.5 h-1.5',
-    large: 'w-2 h-2'
+    small: "w-1 h-1",
+    medium: "w-1.5 h-1.5",
+    large: "w-2 h-2",
   };
 
   const LoadingContent = () => (
@@ -14,23 +14,23 @@ const Loading = ({ fullScreen = false, message = '', size = 'medium' }) => {
         {[0, 0.2, 0.4].map((delay, index) => (
           <motion.div
             key={index}
-            className={`${sizes[size]} bg-primary-400 rounded-full`}
+            className={`${sizes[size]} bg-accent rounded-full`}
             animate={{
               y: [0, -10, 0],
-              opacity: [0.3, 1, 0.3]
+              opacity: [0.3, 1, 0.3],
             }}
             transition={{
               duration: 1.2,
               repeat: Infinity,
               delay: delay,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
         ))}
       </div>
 
       {message && (
-        <p className="text-[10px] font-light tracking-[0.3em] uppercase text-primary-400">
+        <p className="text-[10px] font-light tracking-[0.3em] uppercase text-primary-500">
           {message}
         </p>
       )}
@@ -40,7 +40,7 @@ const Loading = ({ fullScreen = false, message = '', size = 'medium' }) => {
   if (fullScreen) {
     return (
       <motion.div
-        className="fixed inset-0 bg-white z-50 flex items-center justify-center"
+        className="fixed inset-0 bg-batik-cream z-50 flex items-center justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Check, AlertCircle } from 'lucide-react';
-import { trackPageView, trackRSVP } from '../services/analytics';
-import { submitRSVP, isRSVPServiceConfigured } from '../services/rsvp';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Check, AlertCircle } from "lucide-react";
+import { trackPageView, trackRSVP } from "../services/analytics";
+import { submitRSVP } from "../services/rsvp";
 
 const RSVPPage = () => {
   useEffect(() => {
-    trackPageView('RSVP');
+    trackPageView("RSVP");
   }, []);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    guests: '1',
-    attendance: 'yes',
-    dietary: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    guests: "1",
+    attendance: "yes",
+    dietary: "",
+    message: "",
     events: {
       mehendi: true,
       engagement: true,
       haldi: true,
-      wedding: true
-    }
+      wedding: true,
+    },
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,19 +32,19 @@ const RSVPPage = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    if (name.startsWith('event_')) {
-      const eventName = name.replace('event_', '');
-      setFormData(prev => ({
+    if (name.startsWith("event_")) {
+      const eventName = name.replace("event_", "");
+      setFormData((prev) => ({
         ...prev,
         events: {
           ...prev.events,
-          [eventName]: checked
-        }
+          [eventName]: checked,
+        },
       }));
     } else {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        [name]: type === 'checkbox' ? checked : value
+        [name]: type === "checkbox" ? checked : value,
       }));
     }
   };
@@ -54,31 +54,29 @@ const RSVPPage = () => {
     setIsSubmitting(true);
     setSubmitError(null);
 
-    // Track RSVP submission attempt
-    trackRSVP('start', {
+    trackRSVP("start", {
       ...formData,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
 
     try {
-      // Submit to Google Sheets
       await submitRSVP(formData);
 
-      // Track successful submission
-      trackRSVP('complete', {
+      trackRSVP("complete", {
         ...formData,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
 
       setIsSubmitted(true);
     } catch (error) {
-      console.error('RSVP submission failed:', error);
-      setSubmitError(error.message || 'Something went wrong. Please try again.');
+      console.error("RSVP submission failed:", error);
+      setSubmitError(
+        error.message || "Something went wrong. Please try again.",
+      );
 
-      // Track error
-      trackRSVP('error', {
+      trackRSVP("error", {
         error: error.message,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     } finally {
       setIsSubmitting(false);
@@ -87,7 +85,7 @@ const RSVPPage = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-white pt-32 pb-20 flex items-center justify-center">
+      <div className="min-h-screen bg-batik-cream pt-32 pb-20 flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -98,16 +96,16 @@ const RSVPPage = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="w-20 h-20 mx-auto mb-8 border border-primary-200 rounded-full flex items-center justify-center"
+            className="w-20 h-20 mx-auto mb-8 border-3 border-orange rounded-full flex items-center justify-center bg-primary-500"
           >
-            <Check className="w-8 h-8 text-primary-600" strokeWidth={1} />
+            <Check className="w-8 h-8 text-[#E8C84A]" strokeWidth={2} />
           </motion.div>
-          <h2 className="font-display text-4xl font-light tracking-tight mb-4"
-              style={{ fontVariationSettings: '"opsz" 48, "wght" 350' }}>
+          <h2 className="font-script text-5xl tracking-tight mb-4 text-primary-500">
             Thank You
           </h2>
-          <p className="text-base font-light text-primary-600 leading-relaxed">
-            Your response has been received. We look forward to celebrating with you.
+          <p className="text-base text-primary-400 leading-relaxed">
+            Your response has been received. We look forward to celebrating with
+            you.
           </p>
         </motion.div>
       </div>
@@ -115,10 +113,11 @@ const RSVPPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header - Full height with proper spacing */}
-      <section className="min-h-screen flex items-center justify-center px-6 lg:px-12">
-        <div className="max-w-screen-lg mx-auto w-full">
+    <div className="min-h-screen bg-batik-cream">
+      {/* Header */}
+      <section className="min-h-screen flex items-center justify-center px-6 lg:px-12 relative overflow-hidden">
+        <div className="absolute inset-0 batik-bg" />
+        <div className="max-w-screen-lg mx-auto w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,8 +127,7 @@ const RSVPPage = () => {
             <span className="text-label tracking-[0.3em] mb-12 block">
               CONFIRM YOUR ATTENDANCE
             </span>
-            <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-light tracking-tight mb-8"
-                style={{ fontVariationSettings: '"opsz" 72, "wght" 300' }}>
+            <h1 className="font-script text-7xl md:text-8xl lg:text-9xl tracking-tight mb-8 text-primary-500">
               RSVP
             </h1>
             <p className="lead">
@@ -139,7 +137,7 @@ const RSVPPage = () => {
         </div>
       </section>
 
-      {/* Form - Minimal Editorial */}
+      {/* Form */}
       <section className="py-20 md:py-32">
         <div className="max-w-screen-sm mx-auto px-6 lg:px-12">
           <motion.form
@@ -154,57 +152,66 @@ const RSVPPage = () => {
               <label className="text-label text-xs block mb-6">
                 WILL YOU BE JOINING US?
               </label>
-              <div className="flex gap-px">
-                <label className={`
-                  flex-1 py-4 px-6 text-center cursor-pointer transition-all duration-300
-                  ${formData.attendance === 'yes'
-                    ? 'bg-primary-900 text-white'
-                    : 'bg-primary-50 text-primary-600 hover:bg-primary-100'}
-                `}>
+              <div className="flex gap-1">
+                <label
+                  className={`
+                  flex-1 py-4 px-6 text-center cursor-pointer transition-all duration-300 border-2
+                  ${
+                    formData.attendance === "yes"
+                      ? "bg-primary-500 text-cream border-orange"
+                      : "bg-white text-primary-400 border-orange/30 hover:border-orange"
+                  }
+                `}
+                >
                   <input
                     type="radio"
                     name="attendance"
                     value="yes"
-                    checked={formData.attendance === 'yes'}
+                    checked={formData.attendance === "yes"}
                     onChange={handleChange}
                     className="sr-only"
                   />
-                  <span className="text-sm font-light">
-                    Joyfully Accept
-                  </span>
+                  <span className="text-sm font-semibold">Joyfully Accept</span>
                 </label>
-                <label className={`
-                  flex-1 py-4 px-6 text-center cursor-pointer transition-all duration-300
-                  ${formData.attendance === 'no'
-                    ? 'bg-primary-900 text-white'
-                    : 'bg-primary-50 text-primary-600 hover:bg-primary-100'}
-                `}>
+                <label
+                  className={`
+                  flex-1 py-4 px-6 text-center cursor-pointer transition-all duration-300 border-2
+                  ${
+                    formData.attendance === "no"
+                      ? "bg-primary-500 text-cream border-orange"
+                      : "bg-white text-primary-400 border-orange/30 hover:border-orange"
+                  }
+                `}
+                >
                   <input
                     type="radio"
                     name="attendance"
                     value="no"
-                    checked={formData.attendance === 'no'}
+                    checked={formData.attendance === "no"}
                     onChange={handleChange}
                     className="sr-only"
                   />
-                  <span className="text-sm font-light">
+                  <span className="text-sm font-semibold">
                     Regretfully Decline
                   </span>
                 </label>
               </div>
             </div>
 
-            {formData.attendance === 'yes' && (
+            {formData.attendance === "yes" && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
+                animate={{ opacity: 1, height: "auto" }}
                 transition={{ duration: 0.5 }}
                 className="space-y-12"
               >
                 {/* Personal Information */}
                 <div className="space-y-8">
                   <div>
-                    <label htmlFor="name" className="text-label text-xs block mb-3">
+                    <label
+                      htmlFor="name"
+                      className="text-label text-xs block mb-3"
+                    >
                       FULL NAME
                     </label>
                     <input
@@ -214,14 +221,17 @@ const RSVPPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-0 py-3 bg-transparent border-b border-primary-200 text-primary-900 font-light text-base focus:outline-none focus:border-primary-400 transition-colors placeholder-primary-300"
+                      className="w-full px-0 py-3 bg-transparent border-b-3 border-orange text-primary-800 font-semibold text-base focus:outline-none focus:border-primary-500 transition-colors placeholder-primary-300"
                       placeholder="Your name"
                     />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
-                      <label htmlFor="email" className="text-label text-xs block mb-3">
+                      <label
+                        htmlFor="email"
+                        className="text-label text-xs block mb-3"
+                      >
                         EMAIL
                       </label>
                       <input
@@ -231,13 +241,16 @@ const RSVPPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-0 py-3 bg-transparent border-b border-primary-200 text-primary-900 font-light text-base focus:outline-none focus:border-primary-400 transition-colors placeholder-primary-300"
+                        className="w-full px-0 py-3 bg-transparent border-b-3 border-orange text-primary-800 font-semibold text-base focus:outline-none focus:border-primary-500 transition-colors placeholder-primary-300"
                         placeholder="you@email.com"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="phone" className="text-label text-xs block mb-3">
+                      <label
+                        htmlFor="phone"
+                        className="text-label text-xs block mb-3"
+                      >
                         PHONE
                       </label>
                       <input
@@ -247,14 +260,17 @@ const RSVPPage = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-0 py-3 bg-transparent border-b border-primary-200 text-primary-900 font-light text-base focus:outline-none focus:border-primary-400 transition-colors placeholder-primary-300"
+                        className="w-full px-0 py-3 bg-transparent border-b-3 border-orange text-primary-800 font-semibold text-base focus:outline-none focus:border-primary-500 transition-colors placeholder-primary-300"
                         placeholder="+91 98765 43210"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="guests" className="text-label text-xs block mb-3">
+                    <label
+                      htmlFor="guests"
+                      className="text-label text-xs block mb-3"
+                    >
                       NUMBER OF GUESTS
                     </label>
                     <select
@@ -262,10 +278,12 @@ const RSVPPage = () => {
                       name="guests"
                       value={formData.guests}
                       onChange={handleChange}
-                      className="w-full px-0 py-3 bg-transparent border-b border-primary-200 text-primary-900 font-light text-base focus:outline-none focus:border-primary-400 transition-colors"
+                      className="w-full px-0 py-3 bg-transparent border-b-3 border-orange text-primary-800 font-semibold text-base focus:outline-none focus:border-primary-500 transition-colors"
                     >
-                      {[1, 2, 3, 4, 5, 6].map(num => (
-                        <option key={num} value={num}>{num} {num === 1 ? 'Guest' : 'Guests'}</option>
+                      {[1, 2, 3, 4, 5, 6].map((num) => (
+                        <option key={num} value={num}>
+                          {num} {num === 1 ? "Guest" : "Guests"}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -276,16 +294,25 @@ const RSVPPage = () => {
                   <label className="text-label text-xs block mb-6">
                     WHICH EVENTS WILL YOU ATTEND?
                   </label>
-                  <div className="space-y-px">
+                  <div className="space-y-2">
                     {[
-                      { id: 'mehendi', label: 'Bhaat & Mehendi · April 23, Afternoon' },
-                      { id: 'engagement', label: 'Engagement Party · April 23, Evening' },
-                      { id: 'haldi', label: 'Haldi · April 24, Morning' },
-                      { id: 'wedding', label: 'Baraat, Jaimala & Pheras · April 24, Evening' }
-                    ].map(event => (
+                      {
+                        id: "mehendi",
+                        label: "Bhaat & Mehendi · April 23, Afternoon",
+                      },
+                      {
+                        id: "engagement",
+                        label: "Engagement Party · April 23, Evening",
+                      },
+                      { id: "haldi", label: "Haldi · April 24, Morning" },
+                      {
+                        id: "wedding",
+                        label: "Baraat, Jaimala & Pheras · April 24, Evening",
+                      },
+                    ].map((event) => (
                       <label
                         key={event.id}
-                        className="flex items-center p-4 bg-primary-50 hover:bg-primary-100 transition-colors cursor-pointer"
+                        className="flex items-center p-4 bg-white border-2 border-orange/30 hover:border-orange transition-colors cursor-pointer"
                       >
                         <input
                           type="checkbox"
@@ -294,17 +321,24 @@ const RSVPPage = () => {
                           onChange={handleChange}
                           className="sr-only"
                         />
-                        <div className={`
-                          w-4 h-4 border transition-all duration-200 mr-4
-                          ${formData.events[event.id]
-                            ? 'border-primary-900 bg-primary-900'
-                            : 'border-primary-300 bg-white'}
-                        `}>
+                        <div
+                          className={`
+                          w-5 h-5 border-3 transition-all duration-200 mr-4
+                          ${
+                            formData.events[event.id]
+                              ? "border-orange bg-primary-500"
+                              : "border-orange/40 bg-white"
+                          }
+                        `}
+                        >
                           {formData.events[event.id] && (
-                            <Check className="w-3 h-3 text-white" strokeWidth={2} />
+                            <Check
+                              className="w-3.5 h-3.5 text-[#E8C84A]"
+                              strokeWidth={3}
+                            />
                           )}
                         </div>
-                        <span className="text-sm font-light text-primary-700">
+                        <span className="text-sm font-semibold text-primary-600">
                           {event.label}
                         </span>
                       </label>
@@ -315,7 +349,10 @@ const RSVPPage = () => {
                 {/* Additional Information */}
                 <div className="space-y-8">
                   <div>
-                    <label htmlFor="dietary" className="text-label text-xs block mb-3">
+                    <label
+                      htmlFor="dietary"
+                      className="text-label text-xs block mb-3"
+                    >
                       DIETARY RESTRICTIONS
                     </label>
                     <input
@@ -324,13 +361,16 @@ const RSVPPage = () => {
                       name="dietary"
                       value={formData.dietary}
                       onChange={handleChange}
-                      className="w-full px-0 py-3 bg-transparent border-b border-primary-200 text-primary-900 font-light text-base focus:outline-none focus:border-primary-400 transition-colors placeholder-primary-300"
+                      className="w-full px-0 py-3 bg-transparent border-b-3 border-orange text-primary-800 font-semibold text-base focus:outline-none focus:border-primary-500 transition-colors placeholder-primary-300"
                       placeholder="Optional"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="text-label text-xs block mb-3">
+                    <label
+                      htmlFor="message"
+                      className="text-label text-xs block mb-3"
+                    >
                       MESSAGE FOR THE COUPLE
                     </label>
                     <textarea
@@ -339,7 +379,7 @@ const RSVPPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       rows={3}
-                      className="w-full px-0 py-3 bg-transparent border-b border-primary-200 text-primary-900 font-light text-base focus:outline-none focus:border-primary-400 transition-colors resize-none placeholder-primary-300"
+                      className="w-full px-0 py-3 bg-transparent border-b-3 border-orange text-primary-800 font-semibold text-base focus:outline-none focus:border-primary-500 transition-colors resize-none placeholder-primary-300"
                       placeholder="Optional"
                     />
                   </div>
@@ -352,14 +392,18 @@ const RSVPPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-lg"
+                className="flex items-start gap-3 p-4 bg-red-50 border-2 border-red-400"
               >
                 <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm text-red-700">{submitError}</p>
+                  <p className="text-sm font-semibold text-red-700">
+                    {submitError}
+                  </p>
                   <p className="text-xs text-red-500 mt-1">
-                    You can also contact us directly at{' '}
-                    <a href="tel:+919876543210" className="underline">+91 98765 43210</a>
+                    You can also contact us directly at{" "}
+                    <a href="tel:+919876543210" className="underline">
+                      +91 98765 43210
+                    </a>
                   </p>
                 </div>
               </motion.div>
@@ -369,11 +413,14 @@ const RSVPPage = () => {
             <div className="text-center pt-8">
               <button
                 type="submit"
-                disabled={isSubmitting || (formData.attendance === 'yes' && !formData.name)}
-                className="btn-primary min-w-[200px] disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={
+                  isSubmitting ||
+                  (formData.attendance === "yes" && !formData.name)
+                }
+                className="btn-primary min-w-[200px] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 <span className="relative z-10">
-                  {isSubmitting ? 'Submitting...' : 'Submit Response'}
+                  {isSubmitting ? "Submitting..." : "Submit Response"}
                 </span>
               </button>
             </div>

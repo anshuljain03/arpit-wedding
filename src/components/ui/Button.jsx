@@ -1,40 +1,42 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { trackClick } from '../../services/analytics';
+import React from "react";
+import { motion } from "framer-motion";
+import { trackClick } from "../../services/analytics";
 
 const Button = ({
   children,
-  variant = 'primary',
-  size = 'medium',
+  variant = "primary",
+  size = "medium",
   onClick,
   disabled = false,
   loading = false,
   icon: Icon,
-  iconPosition = 'left',
+  iconPosition = "left",
   fullWidth = false,
-  className = '',
+  className = "",
   trackingLabel,
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-light transition-all duration-300';
+  const baseClasses =
+    "inline-flex items-center justify-center font-sans font-bold transition-all duration-300 cursor-pointer";
 
   const variants = {
-    primary: 'bg-primary-900 text-white hover:bg-primary-800',
-    secondary: 'border border-primary-300 text-primary-900 hover:border-primary-900',
-    ghost: 'text-primary-500 hover:text-primary-900 underline-offset-4',
-    minimal: 'text-primary-400 hover:text-primary-700'
+    primary:
+      "bg-primary-500 text-cream hover:bg-orange hover:text-white border-3 border-orange",
+    secondary:
+      "border-3 border-orange text-primary-500 hover:bg-primary-500 hover:text-cream",
+    ghost: "text-primary-500 hover:text-orange font-semibold",
+    minimal: "text-primary-400 hover:text-primary-600",
   };
 
   const sizes = {
-    small: 'px-6 py-2 text-[10px] tracking-[0.2em] uppercase',
-    medium: 'px-8 py-3 text-[11px] tracking-[0.25em] uppercase',
-    large: 'px-10 py-4 text-xs tracking-[0.3em] uppercase'
+    small: "px-6 py-2 text-[10px] tracking-[0.2em] uppercase",
+    medium: "px-8 py-3 text-[11px] tracking-[0.25em] uppercase",
+    large: "px-10 py-4 text-xs tracking-[0.3em] uppercase",
   };
 
   const handleClick = (e) => {
     if (disabled || loading) return;
 
-    // Track button click
     if (trackingLabel) {
       trackClick(trackingLabel, { variant, size });
     }
@@ -46,8 +48,8 @@ const Button = ({
     ${baseClasses}
     ${variants[variant]}
     ${sizes[size]}
-    ${fullWidth ? 'w-full' : ''}
-    ${disabled ? 'opacity-30 cursor-not-allowed' : ''}
+    ${fullWidth ? "w-full" : ""}
+    ${disabled ? "opacity-30 cursor-not-allowed" : ""}
     ${className}
   `;
 
@@ -67,9 +69,13 @@ const Button = ({
         <span>Loading...</span>
       ) : (
         <>
-          {Icon && iconPosition === 'left' && <Icon size={14} strokeWidth={1} />}
+          {Icon && iconPosition === "left" && (
+            <Icon size={14} strokeWidth={1.5} />
+          )}
           {children}
-          {Icon && iconPosition === 'right' && <Icon size={14} strokeWidth={1} />}
+          {Icon && iconPosition === "right" && (
+            <Icon size={14} strokeWidth={1.5} />
+          )}
         </>
       )}
     </motion.button>

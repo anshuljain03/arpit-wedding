@@ -1,9 +1,9 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const Card = ({
   children,
-  className = '',
+  className = "",
   hover = false,
   padding = true,
   border = true,
@@ -13,24 +13,24 @@ const Card = ({
 }) => {
   const cardClasses = `
     bg-white
-    ${border ? 'border border-primary-100' : ''}
-    ${padding ? 'p-8 lg:p-12' : ''}
-    ${hover ? 'hover:border-primary-300 transition-all duration-300 cursor-pointer' : ''}
+    ${border ? "border-3 border-orange" : ""}
+    ${padding ? "p-8 lg:p-12" : ""}
+    ${hover ? "hover:border-[#D4993D] hover:shadow-lg hover:shadow-primary-500/10 transition-all duration-300 cursor-pointer" : ""}
     ${className}
   `;
 
   const cardVariants = {
     hidden: {
-      opacity: 0
+      opacity: 0,
     },
     visible: {
       opacity: 1,
       transition: {
         duration: 0.6,
         delay: delay,
-        ease: 'easeOut'
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -40,9 +40,13 @@ const Card = ({
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      whileHover={hover ? {
-        x: 4
-      } : {}}
+      whileHover={
+        hover
+          ? {
+              y: -4,
+            }
+          : {}
+      }
       {...props}
     >
       {children}
