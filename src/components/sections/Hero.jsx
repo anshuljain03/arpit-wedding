@@ -63,7 +63,6 @@ const Hero = () => {
   const topClusterRef = useRef(null);
   const bottomClusterRef = useRef(null);
   const sectionRef = useRef(null);
-
   // Toggle editor with Ctrl+Shift+E
   useEffect(() => {
     const handleKey = (e) => {

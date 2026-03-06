@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 
 const basePath = import.meta.env.BASE_URL || "/";
 
@@ -24,6 +24,8 @@ const FlowerEditor = ({
   const [dragging, setDragging] = useState(null);
   const [activeCluster, setActiveCluster] = useState("top");
   const [, forceUpdate] = useState(0);
+  const [panelPos, setPanelPos] = useState({ x: null, y: null });
+  const panelDragRef = useRef(null);
 
   const selected = flowers.find((f) => f.id === selectedId);
   const clusterFlowers = flowers.filter((f) => f.cluster === activeCluster);
@@ -176,6 +178,32 @@ const FlowerEditor = ({
     [flowers, activeCluster, setFlowers],
   );
 
+  const handlePanelDragStart = useCallback(
+    (e) => {
+      e.preventDefault();
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const startPanelX = panelPos.x ?? window.innerWidth - 280;
+      const startPanelY = panelPos.y ?? 80;
+
+      const handleMove = (moveEvent) => {
+        setPanelPos({
+          x: startPanelX + (moveEvent.clientX - startX),
+          y: startPanelY + (moveEvent.clientY - startY),
+        });
+      };
+
+      const handleUp = () => {
+        document.removeEventListener("mousemove", handleMove);
+        document.removeEventListener("mouseup", handleUp);
+      };
+
+      document.addEventListener("mousemove", handleMove);
+      document.addEventListener("mouseup", handleUp);
+    },
+    [panelPos],
+  );
+
   const exportJSON = useCallback(() => {
     const json = JSON.stringify({ flowers }, null, 2);
     navigator.clipboard.writeText(json).then(() => {
@@ -246,15 +274,22 @@ const FlowerEditor = ({
           const clusterTop = rect.top - sectionRect.top;
           const clusterLeft = rect.left - sectionRect.left;
 
-          let flowerTop, flowerLeft;
-          flowerLeft = clusterLeft + (flower.x / 100) * rect.width;
+          const flowerLeft = clusterLeft + (flower.x / 100) * rect.width;
 
+          let posStyle;
           if (activeCluster === "top") {
-            flowerTop = clusterTop + (flower.y / 100) * rect.height;
+            posStyle = {
+              top: clusterTop + (flower.y / 100) * rect.height,
+              left: flowerLeft,
+            };
           } else {
-            // bottom cluster: y is negative offset from bottom
-            flowerTop =
-              clusterTop + rect.height + (flower.y / 100) * rect.height;
+            // Match CSS `bottom: ${-f.y}%` used by real flowers
+            const sectionHeight = sectionRect.height;
+            const clusterBottomFromSectionBottom =
+              sectionHeight - (clusterTop + rect.height);
+            const flowerBottom =
+              clusterBottomFromSectionBottom + (-flower.y / 100) * rect.height;
+            posStyle = { bottom: flowerBottom, left: flowerLeft };
           }
 
           return (
@@ -262,8 +297,7 @@ const FlowerEditor = ({
               key={flower.id}
               className="absolute"
               style={{
-                top: flowerTop,
-                left: flowerLeft,
+                ...posStyle,
                 width: `${flower.width}vw`,
                 transform: `rotate(${flower.rotation}deg) scaleX(${flower.scaleX})`,
                 opacity: flower.opacity,
@@ -308,10 +342,25 @@ const FlowerEditor = ({
 
       {/* Control Panel */}
       <div
-        className="fixed right-4 top-20 w-64 bg-white/95 backdrop-blur border border-gray-300 rounded-lg shadow-xl p-4 z-[300] text-xs"
+        className="fixed w-64 bg-white/95 backdrop-blur border border-gray-300 rounded-lg shadow-xl p-4 z-[300] text-xs"
         onClick={(e) => e.stopPropagation()}
-        style={{ maxHeight: "calc(100vh - 100px)", overflowY: "auto" }}
+        style={{
+          left: panelPos.x != null ? panelPos.x : undefined,
+          top: panelPos.y != null ? panelPos.y : undefined,
+          right: panelPos.x == null ? 16 : undefined,
+          ...(panelPos.x == null ? { top: 80 } : {}),
+          maxHeight: "calc(100vh - 100px)",
+          overflowY: "auto",
+        }}
       >
+        {/* Drag handle */}
+        <div
+          className="flex items-center justify-center mb-2 py-1 -mx-4 -mt-4 px-4 pt-3 rounded-t-lg cursor-move bg-gray-200/60 hover:bg-gray-300/60 select-none"
+          onMouseDown={handlePanelDragStart}
+        >
+          <div className="w-8 h-1 bg-gray-400 rounded-full" />
+        </div>
+
         {/* Cluster toggle */}
         <div className="flex mb-3 border border-gray-300 rounded overflow-hidden">
           <button
