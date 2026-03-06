@@ -26,6 +26,27 @@ const FlowerImg = ({
   />
 );
 
+// Thin gold ornament with diamond motif
+const GoldOrnament = ({ width = "200px", className = "" }) => (
+  <svg
+    viewBox="0 0 200 20"
+    fill="none"
+    style={{ width }}
+    className={`mx-auto ${className}`}
+  >
+    <line x1="0" y1="10" x2="85" y2="10" stroke="#D4993D" strokeWidth="0.5" />
+    <line
+      x1="115"
+      y1="10"
+      x2="200"
+      y2="10"
+      stroke="#D4993D"
+      strokeWidth="0.5"
+    />
+    <path d="M95 10 L100 5 L105 10 L100 15 Z" fill="#D4993D" />
+  </svg>
+);
+
 const Hero = () => {
   const [countdown, setCountdown] = useState({
     days: 0,
@@ -64,194 +85,207 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* === MAROON BORDER FRAME === */}
-      <div className="absolute inset-0 batik-bg-dark" />
+      {/* === LIGHT BACKGROUND === */}
+      <div className="absolute inset-0 bg-[#FFF5E6]" />
 
-      {/* === ORANGE BORDER === */}
-      <div className="absolute inset-[clamp(20px,4vw,48px)] border-4 border-orange z-[1]">
-        <div className="absolute inset-2 border border-[#D4993D]/40" />
-      </div>
+      {/* === BRIGHT GOLD BORDER === */}
+      <div className="absolute inset-[clamp(10px,2vw,24px)] border-2 border-[#D4993D] z-[1]" />
 
-      {/* === GREEN CENTER === */}
+      {/* === CREAM CENTER === */}
       <div
         className="absolute z-[2] overflow-hidden"
         style={{
-          inset: "calc(clamp(20px, 4vw, 48px) + 4px)",
-          background: "linear-gradient(180deg, #3A6B4A 0%, #2A5038 100%)",
+          inset: "calc(clamp(10px, 2vw, 24px) + 2px)",
+          background:
+            "linear-gradient(180deg, #FFFAF2 0%, #FFF5E6 50%, #FFF0DC 100%)",
         }}
       >
-        {/* ===== TOP FLORAL CLUSTER (heavier on left) ===== */}
-        <div className="absolute top-0 left-0 right-0 h-[35vh] md:h-[30vh] pointer-events-none">
-          {/* 1. Large hibiscus — anchor left */}
+        {/* ===== TOP FLORAL CLUSTER ===== */}
+        <div className="absolute top-0 left-0 right-0 h-[30vh] md:h-[26vh] pointer-events-none">
+          {/* Large anchors — corners */}
           <FlowerImg
-            src="hibiscus.svg"
-            className="w-[45vw] md:w-[28vw] max-w-[380px]"
-            style={{ top: "-8%", left: "-5%", transform: "rotate(-15deg)" }}
+            src="flower-coral.png"
+            className="w-[40vw] md:w-[24vw] max-w-[360px]"
+            style={{ top: "-10%", left: "-4%", transform: "rotate(-15deg)" }}
           />
-          {/* 2. Large rose — anchor right */}
           <FlowerImg
-            src="rose-2.svg"
-            className="w-[35vw] md:w-[22vw] max-w-[300px]"
+            src="flower-peach.png"
+            className="w-[36vw] md:w-[22vw] max-w-[320px]"
             style={{
-              top: "-4%",
+              top: "-8%",
               right: "-3%",
-              transform: "scaleX(-1) rotate(12deg)",
+              transform: "scaleX(-1) rotate(10deg)",
             }}
           />
-          {/* 3. Tropical accent — mid-left */}
+          {/* Medium — filling across the top */}
           <FlowerImg
-            src="tropical-flower.svg"
-            className="w-[16vw] md:w-[10vw] max-w-[130px]"
-            style={{ top: "2%", left: "18%", transform: "rotate(8deg)" }}
+            src="flower-orange.png"
+            className="w-[24vw] md:w-[14vw] max-w-[200px] opacity-90"
+            style={{ top: "-8%", left: "20%", transform: "rotate(12deg)" }}
           />
-          {/* 4. Rose — center-left overlap */}
           <FlowerImg
-            src="rose-2.svg"
-            className="w-[24vw] md:w-[15vw] max-w-[200px]"
-            style={{ top: "-6%", left: "40%", transform: "rotate(-5deg)" }}
-          />
-          {/* 5. Blue rose — right accent */}
-          <FlowerImg
-            src="rose-1-blue.svg"
-            className="w-[18vw] md:w-[10vw] max-w-[140px]"
-            style={{ top: "1%", right: "16%", transform: "rotate(-22deg)" }}
-          />
-          {/* 6. Small tropical — right gap filler */}
-          <FlowerImg
-            src="tropical-flower.svg"
-            className="w-[12vw] md:w-[7vw] max-w-[90px]"
-            style={{ top: "16%", right: "26%", transform: "rotate(20deg)" }}
-          />
-          {/* 7. Small tropical — left low */}
-          <FlowerImg
-            src="tropical-flower.svg"
-            className="w-[10vw] md:w-[6vw] max-w-[75px]"
-            style={{ top: "24%", left: "8%", transform: "rotate(35deg)" }}
-          />
-          {/* 8. Blue hibiscus — center overlap */}
-          <FlowerImg
-            src="hibiscus-blue.svg"
-            className="w-[22vw] md:w-[14vw] max-w-[200px] opacity-85"
-            style={{ top: "-10%", left: "34%", transform: "rotate(5deg)" }}
-          />
-          {/* 9. Dark rose — far left filler */}
-          <FlowerImg
-            src="rose-1.svg"
-            className="w-[15vw] md:w-[9vw] max-w-[120px]"
-            style={{ top: "10%", left: "1%", transform: "rotate(-40deg)" }}
-          />
-          {/* 10. Blue rose — right edge */}
-          <FlowerImg
-            src="rose-1-blue.svg"
-            className="w-[14vw] md:w-[8vw] max-w-[110px] opacity-80"
+            src="flower-red.png"
+            className="w-[22vw] md:w-[13vw] max-w-[180px]"
             style={{
-              top: "20%",
-              right: "4%",
-              transform: "rotate(-15deg) scaleX(-1)",
+              top: "-6%",
+              left: "42%",
+              transform: "rotate(-8deg) scaleX(-1)",
             }}
+          />
+          <FlowerImg
+            src="flower-purple.png"
+            className="w-[20vw] md:w-[12vw] max-w-[170px] opacity-90"
+            style={{ top: "-4%", right: "14%", transform: "rotate(-20deg)" }}
+          />
+          <FlowerImg
+            src="flower-yellow.png"
+            className="w-[22vw] md:w-[13vw] max-w-[180px]"
+            style={{ top: "-10%", left: "8%", transform: "rotate(22deg)" }}
+          />
+          <FlowerImg
+            src="flower-pink.png"
+            className="w-[18vw] md:w-[11vw] max-w-[160px] opacity-85"
+            style={{ top: "-5%", right: "30%", transform: "rotate(5deg)" }}
+          />
+          {/* Second row — edge fillers only */}
+          <FlowerImg
+            src="flower-cream.png"
+            className="w-[18vw] md:w-[10vw] max-w-[140px] opacity-80"
+            style={{ top: "2%", left: "2%", transform: "rotate(30deg)" }}
+          />
+          <FlowerImg
+            src="flower-orange.png"
+            className="w-[16vw] md:w-[9vw] max-w-[130px] opacity-80"
+            style={{ top: "4%", right: "3%", transform: "rotate(18deg)" }}
+          />
+          <FlowerImg
+            src="flower-peach.png"
+            className="w-[14vw] md:w-[8vw] max-w-[120px] opacity-70"
+            style={{ top: "-2%", left: "60%", transform: "rotate(15deg)" }}
+          />
+          <FlowerImg
+            src="flower-coral.png"
+            className="w-[12vw] md:w-[7vw] max-w-[100px] opacity-60"
+            style={{ top: "8%", left: "12%", transform: "rotate(-18deg)" }}
+          />
+          <FlowerImg
+            src="flower-purple.png"
+            className="w-[12vw] md:w-[7vw] max-w-[100px] opacity-60"
+            style={{ top: "6%", right: "8%", transform: "rotate(35deg)" }}
           />
         </div>
 
-        {/* ===== BOTTOM FLORAL CLUSTER (heavier on right) ===== */}
-        <div className="absolute bottom-0 left-0 right-0 h-[35vh] md:h-[30vh] pointer-events-none">
-          {/* 1. Large hibiscus — anchor RIGHT */}
+        {/* ===== BOTTOM FLORAL CLUSTER ===== */}
+        <div className="absolute bottom-0 left-0 right-0 h-[30vh] md:h-[26vh] pointer-events-none">
+          {/* Large anchors — corners */}
           <FlowerImg
-            src="hibiscus.svg"
-            className="w-[42vw] md:w-[26vw] max-w-[360px]"
+            src="flower-red.png"
+            className="w-[40vw] md:w-[24vw] max-w-[360px]"
+            style={{
+              bottom: "-8%",
+              right: "-3%",
+              transform: "rotate(18deg)",
+            }}
+          />
+          <FlowerImg
+            src="flower-purple.png"
+            className="w-[38vw] md:w-[23vw] max-w-[340px]"
             style={{
               bottom: "-6%",
-              right: "-4%",
-              transform: "rotate(20deg) scaleY(-1)",
+              left: "-4%",
+              transform: "scaleX(-1) rotate(-15deg)",
             }}
           />
-          {/* 2. Large rose — anchor LEFT */}
+          {/* Medium — filling across the bottom */}
           <FlowerImg
-            src="rose-2.svg"
-            className="w-[36vw] md:w-[22vw] max-w-[300px]"
+            src="flower-pink.png"
+            className="w-[24vw] md:w-[14vw] max-w-[200px] opacity-90"
+            style={{
+              bottom: "-6%",
+              left: "20%",
+              transform: "rotate(-10deg)",
+            }}
+          />
+          <FlowerImg
+            src="flower-yellow.png"
+            className="w-[22vw] md:w-[13vw] max-w-[180px] opacity-90"
+            style={{
+              bottom: "-8%",
+              left: "40%",
+              transform: "rotate(8deg) scaleX(-1)",
+            }}
+          />
+          <FlowerImg
+            src="flower-coral.png"
+            className="w-[20vw] md:w-[12vw] max-w-[170px]"
+            style={{
+              bottom: "-4%",
+              right: "14%",
+              transform: "rotate(-12deg)",
+            }}
+          />
+          <FlowerImg
+            src="flower-peach.png"
+            className="w-[22vw] md:w-[13vw] max-w-[180px]"
+            style={{
+              bottom: "-8%",
+              right: "6%",
+              transform: "rotate(14deg) scaleX(-1)",
+            }}
+          />
+          <FlowerImg
+            src="flower-cream.png"
+            className="w-[18vw] md:w-[11vw] max-w-[160px] opacity-85"
             style={{
               bottom: "-5%",
-              left: "-6%",
-              transform: "scaleX(-1) rotate(-18deg) scaleY(-1)",
+              left: "58%",
+              transform: "rotate(5deg)",
             }}
           />
-          {/* 3. Pink hibiscus — left-center */}
+          {/* Second row — edge fillers only */}
           <FlowerImg
-            src="hibiscus-pink.svg"
-            className="w-[24vw] md:w-[15vw] max-w-[200px] opacity-85"
+            src="flower-orange.png"
+            className="w-[18vw] md:w-[10vw] max-w-[140px] opacity-80"
             style={{
-              bottom: "-1%",
-              left: "24%",
-              transform: "rotate(-8deg) scaleY(-1)",
+              bottom: "0%",
+              right: "1%",
+              transform: "rotate(28deg)",
             }}
           />
-          {/* 4. Blue hibiscus — center overlap */}
           <FlowerImg
-            src="hibiscus-blue.svg"
-            className="w-[26vw] md:w-[16vw] max-w-[220px] opacity-85"
-            style={{
-              bottom: "-10%",
-              left: "36%",
-              transform: "rotate(8deg) scaleY(-1)",
-            }}
-          />
-          {/* 5. Blue rose — right accent */}
-          <FlowerImg
-            src="rose-1-blue.svg"
-            className="w-[20vw] md:w-[12vw] max-w-[160px]"
+            src="flower-red.png"
+            className="w-[16vw] md:w-[9vw] max-w-[130px] opacity-80"
             style={{
               bottom: "2%",
-              right: "20%",
-              transform: "rotate(-12deg) scaleY(-1)",
+              left: "3%",
+              transform: "rotate(22deg)",
             }}
           />
-          {/* 6. Tropical — left gap filler */}
           <FlowerImg
-            src="tropical-flower.svg"
-            className="w-[13vw] md:w-[8vw] max-w-[95px]"
+            src="flower-yellow.png"
+            className="w-[14vw] md:w-[8vw] max-w-[120px] opacity-70"
             style={{
-              bottom: "18%",
-              left: "12%",
-              transform: "rotate(-30deg) scaleY(-1)",
+              bottom: "-2%",
+              left: "34%",
+              transform: "rotate(-15deg)",
             }}
           />
-          {/* 7. Tropical — right small */}
           <FlowerImg
-            src="tropical-flower.svg"
-            className="w-[10vw] md:w-[6vw] max-w-[75px]"
+            src="flower-pink.png"
+            className="w-[12vw] md:w-[7vw] max-w-[100px] opacity-60"
             style={{
-              bottom: "22%",
-              right: "9%",
-              transform: "rotate(40deg) scaleY(-1)",
+              bottom: "6%",
+              right: "10%",
+              transform: "rotate(15deg)",
             }}
           />
-          {/* 8. Small rose — far right */}
           <FlowerImg
-            src="rose-2.svg"
-            className="w-[16vw] md:w-[10vw] max-w-[130px]"
+            src="flower-coral.png"
+            className="w-[12vw] md:w-[7vw] max-w-[100px] opacity-60"
             style={{
-              bottom: "8%",
-              right: "2%",
-              transform: "rotate(25deg) scaleY(-1)",
-            }}
-          />
-          {/* 9. Dark rose — far left */}
-          <FlowerImg
-            src="rose-1.svg"
-            className="w-[14vw] md:w-[8vw] max-w-[110px]"
-            style={{
-              bottom: "14%",
-              left: "2%",
-              transform: "rotate(35deg) scaleY(-1)",
-            }}
-          />
-          {/* 10. Tropical — center filler */}
-          <FlowerImg
-            src="tropical-flower.svg"
-            className="w-[12vw] md:w-[7vw] max-w-[95px] opacity-70"
-            style={{
-              bottom: "22%",
-              left: "46%",
-              transform: "rotate(5deg) scaleY(-1)",
+              bottom: "4%",
+              left: "14%",
+              transform: "rotate(-22deg) scaleX(-1)",
             }}
           />
         </div>
@@ -261,87 +295,103 @@ const Hero = () => {
       <div className="relative z-10 min-h-screen flex items-center justify-center">
         <div className="text-center px-6 py-16 md:py-20">
           <div className="relative inline-block">
-            {/* Gold circle */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[38%] w-56 h-56 md:w-80 md:h-80 rounded-full bg-[#E8C84A] opacity-90" />
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[38%] w-52 h-52 md:w-72 md:h-72 rounded-full border-2 border-[#D4993D] opacity-60" />
-
             <div className="relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+              >
+                <GoldOrnament width="180px" className="mb-6" />
+              </motion.div>
+
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                className="font-script text-2xl md:text-3xl text-[#E8C84A] mb-4"
+                className="text-base md:text-lg text-[#8B6914] mb-8 tracking-[0.3em] uppercase"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                }}
               >
                 Save the Date
               </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.2,
-                  ease: [0.23, 1, 0.32, 1],
-                }}
-                className="mb-6 md:mb-8"
-              >
-                <div className="inline-block bg-orange px-6 py-2 md:px-8 md:py-3">
-                  <span className="font-sans text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-white">
-                    APRIL 24 — 25, 2026
-                  </span>
-                </div>
-              </motion.div>
 
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
                   duration: 1.2,
-                  delay: 0.4,
+                  delay: 0.3,
                   ease: [0.23, 1, 0.32, 1],
                 }}
-                className="mb-4 md:mb-6"
+                className="mb-6 md:mb-8"
               >
                 <motion.h1
-                  className="font-script text-6xl md:text-8xl lg:text-9xl text-cream leading-none"
+                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[#2A5038] leading-none tracking-[0.12em] font-semibold"
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{
                     duration: 1,
-                    delay: 0.5,
+                    delay: 0.4,
                     ease: [0.23, 1, 0.32, 1],
+                  }}
+                  style={{
+                    textShadow: "0 1px 8px rgba(0,0,0,0.08)",
                   }}
                 >
                   {content.wedding.brideName.split(" ")[0]}
                 </motion.h1>
 
                 <motion.div
-                  className="my-2 md:my-3"
+                  className="my-3 md:my-4"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{
                     duration: 0.8,
-                    delay: 0.9,
-                    ease: [0.23, 1, 0.32, 1],
-                  }}
-                >
-                  <span className="font-display text-3xl md:text-4xl text-[#E8C84A] font-light">
-                    &
-                  </span>
-                </motion.div>
-
-                <motion.h1
-                  className="font-script text-6xl md:text-8xl lg:text-9xl text-cream leading-none"
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{
-                    duration: 1,
                     delay: 0.7,
                     ease: [0.23, 1, 0.32, 1],
                   }}
                 >
+                  <span
+                    className="text-2xl md:text-3xl text-[#D4993D] font-light"
+                    style={{
+                      fontFamily: "'Playfair Display', serif",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    &amp;
+                  </span>
+                </motion.div>
+
+                <motion.h1
+                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[#2A5038] leading-none tracking-[0.12em] font-semibold"
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.6,
+                    ease: [0.23, 1, 0.32, 1],
+                  }}
+                  style={{
+                    textShadow: "0 1px 8px rgba(0,0,0,0.08)",
+                  }}
+                >
                   {content.wedding.groomName.split(" ")[0]}
                 </motion.h1>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.9,
+                  ease: [0.23, 1, 0.32, 1],
+                }}
+              >
+                <GoldOrnament width="140px" className="mb-5" />
               </motion.div>
 
               <motion.p
@@ -352,7 +402,24 @@ const Hero = () => {
                   delay: 1,
                   ease: [0.23, 1, 0.32, 1],
                 }}
-                className="font-serif text-lg md:text-xl text-cream/90 italic mb-8 md:mb-10"
+                className="font-sans text-[11px] md:text-xs font-medium tracking-[0.25em] uppercase text-[#5A5A5A] mb-2"
+              >
+                April 24 — 25, 2026
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 1.1,
+                  ease: [0.23, 1, 0.32, 1],
+                }}
+                className="text-lg md:text-xl text-[#7A7A7A] italic mb-10"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 300,
+                }}
               >
                 Nashik, Maharashtra
               </motion.p>
@@ -362,7 +429,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.8,
-                  delay: 1.2,
+                  delay: 1.3,
                   ease: [0.23, 1, 0.32, 1],
                 }}
                 className="flex justify-center gap-6 md:gap-10"
@@ -373,10 +440,10 @@ const Hero = () => {
                   { value: countdown.minutes, label: "Min" },
                 ].map((item) => (
                   <div key={item.label} className="text-center">
-                    <div className="font-display text-3xl md:text-5xl font-semibold text-[#E8C84A]">
+                    <div className="font-display text-3xl md:text-5xl font-medium text-[#8B6914]">
                       {String(item.value).padStart(2, "0")}
                     </div>
-                    <p className="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-cream/70 mt-1">
+                    <p className="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-[#999] mt-1">
                       {item.label}
                     </p>
                   </div>
@@ -402,7 +469,7 @@ const Hero = () => {
             window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
           }
         >
-          <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-cream/70 font-semibold">
+          <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#999] font-semibold">
             Scroll
           </span>
           <svg width="2" height="24" viewBox="0 0 2 24" fill="none">
@@ -411,7 +478,7 @@ const Hero = () => {
               y1="0"
               x2="1"
               y2="24"
-              stroke="#FFF5E6"
+              stroke="#999999"
               strokeWidth="2"
               strokeDasharray="4 3"
               strokeOpacity="0.5"

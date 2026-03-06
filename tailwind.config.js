@@ -54,7 +54,7 @@ export default {
         sans: ["Poppins", "system-ui", "-apple-system", "sans-serif"],
         serif: ["Playfair Display", "Georgia", "serif"],
         display: ["Cormorant Infant", "Georgia", "serif"],
-        script: ["Great Vibes", "cursive"],
+        script: ["Cormorant SC", "Georgia", "serif"],
       },
       fontSize: {
         "10xl": "10rem",
