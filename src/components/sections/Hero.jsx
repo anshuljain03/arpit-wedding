@@ -204,7 +204,7 @@ const Hero = () => {
                 className="mb-6 md:mb-8"
               >
                 <motion.h1
-                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[#2A5038] leading-none tracking-[0.12em] font-semibold"
+                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[#3D5A40] leading-none tracking-[0.12em] font-semibold"
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{
@@ -241,7 +241,7 @@ const Hero = () => {
                 </motion.div>
 
                 <motion.h1
-                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[#2A5038] leading-none tracking-[0.12em] font-semibold"
+                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[#3D5A40] leading-none tracking-[0.12em] font-semibold"
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{

@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
 import { trackClick } from "../../services/analytics";
+
+const navItems = [
+  { id: "home", label: "Home", path: "/" },
+  { id: "schedule", label: "Schedule", path: "/schedule" },
+  { id: "rsvp", label: "RSVP", path: "/rsvp" },
+  { id: "travel", label: "Travel", path: "/travel" },
+  { id: "gift", label: "Gift", path: "/gift" },
+];
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
-
-  const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/events", label: "Schedule" },
-    { path: "/travel", label: "Travel" },
-    { path: "/rsvp", label: "RSVP", highlight: true },
-    { path: "/ceremonies", label: "Guide" },
-  ];
+  const isHome = location.pathname === "/" || location.pathname === "";
 
   useEffect(() => {
     if (!isHome) {
@@ -24,108 +24,79 @@ const Header = () => {
       return;
     }
 
-    setShowNav(false);
-
     const handleScroll = () => {
       setShowNav(window.scrollY > window.innerHeight * 0.8);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome]);
 
-  const handleNavClick = (item) => {
-    trackClick("Navigation", { page: item.label, path: item.path });
+  useEffect(() => {
     setIsMobileMenuOpen(false);
-  };
+  }, [location.pathname]);
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: showNav ? 0 : -100 }}
+      {/* Desktop floating pill */}
+      <motion.nav
+        initial={{ y: 60, opacity: 0 }}
+        animate={{ y: showNav ? 0 : 60, opacity: showNav ? 1 : 0 }}
         transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="fixed top-0 w-full z-50 bg-primary-500 border-b-4 border-orange shadow-lg"
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden md:flex items-center gap-8 bg-white/80 backdrop-blur-md rounded-full px-8 py-2.5 shadow-sm border border-[#D4993D]/20"
       >
-        <nav className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
-          {/* Logo/Date */}
+        {navItems.map((item) => (
           <Link
-            to="/"
-            onClick={() => handleNavClick({ label: "Logo", path: "/" })}
+            key={item.id}
+            to={item.path}
+            onClick={() => trackClick("Navigation", { section: item.id })}
+            className="relative"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400 }}
-              className="flex flex-col gap-0.5"
+            <span
+              className={`
+                text-[11px] font-sans font-semibold uppercase tracking-[0.2em] transition-colors duration-300
+                ${location.pathname === item.path ? "text-[#D4993D]" : "text-primary-600 hover:text-[#D4993D]"}
+              `}
             >
-              <span className="font-script text-3xl text-[#E8C84A]">P & A</span>
-              <span className="text-[9px] font-sans font-bold uppercase tracking-[0.3em] text-cream/70">
-                04.24 — 25.26
-              </span>
-            </motion.div>
+              {item.label}
+            </span>
+            {location.pathname === item.path && (
+              <motion.div
+                layoutId="activePill"
+                className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#D4993D] rounded-full"
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
+            )}
           </Link>
+        ))}
+      </motion.nav>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-10 lg:gap-14">
-            {navItems.map((item) => {
-              const isActive = location.pathname === item.path;
+      {/* Mobile floating button */}
+      <motion.button
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{
+          scale: showNav ? 1 : 0,
+          opacity: showNav ? 1 : 0,
+        }}
+        transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+        className="fixed bottom-6 right-4 z-50 md:hidden w-11 h-11 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-[#D4993D]/20 flex items-center justify-center cursor-pointer"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        <motion.div
+          animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {isMobileMenuOpen ? (
+            <X size={18} strokeWidth={2} className="text-primary-600" />
+          ) : (
+            <Menu size={18} strokeWidth={2} className="text-primary-600" />
+          )}
+        </motion.div>
+      </motion.button>
 
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => handleNavClick(item)}
-                  className="relative group"
-                >
-                  <span
-                    className={`
-                      text-xs font-sans font-bold uppercase tracking-[0.25em] transition-all duration-300
-                      ${isActive ? "text-[#E8C84A]" : "text-cream/80 hover:text-[#E8C84A]"}
-                      ${item.highlight ? "font-extrabold" : ""}
-                    `}
-                  >
-                    {item.label}
-                  </span>
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute -bottom-2 left-0 right-0 h-[3px] bg-orange"
-                      transition={{
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                  {!isActive && (
-                    <span className="absolute -bottom-2 left-0 right-0 h-[2px] bg-orange/60 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 cursor-pointer"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <motion.div
-              animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-              transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            >
-              {isMobileMenuOpen ? (
-                <X size={22} strokeWidth={2} className="text-cream" />
-              ) : (
-                <Menu size={22} strokeWidth={2} className="text-cream" />
-              )}
-            </motion.div>
-          </button>
-        </nav>
-      </motion.header>
-
-      {/* Mobile Menu */}
+      {/* Mobile menu drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -134,7 +105,7 @@ const Header = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-primary-900/30 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/10 backdrop-blur-sm z-40 md:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
@@ -143,49 +114,32 @@ const Header = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed right-0 top-0 h-full w-72 bg-primary-500 border-l-4 border-orange shadow-2xl z-40 md:hidden"
+              className="fixed right-0 top-0 h-full w-64 bg-white/95 backdrop-blur-md shadow-lg z-40 md:hidden"
             >
-              <div className="pt-24 px-8">
+              <div className="pt-20 px-8">
                 <div className="space-y-6">
-                  {navItems.map((item, index) => {
-                    const isActive = location.pathname === item.path;
-
-                    return (
+                  {navItems.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
                       <Link
-                        key={item.path}
                         to={item.path}
-                        onClick={() => handleNavClick(item)}
+                        onClick={() =>
+                          trackClick("Navigation", { section: item.id })
+                        }
+                        className={`
+                          block text-base font-sans font-semibold tracking-wide
+                          ${location.pathname === item.path ? "text-[#D4993D]" : "text-primary-600"}
+                          transition-all duration-300 hover:translate-x-1 hover:text-[#D4993D]
+                        `}
                       >
-                        <motion.div
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                          className={`
-                            text-lg font-sans font-semibold
-                            ${isActive ? "text-[#E8C84A]" : "text-cream/80"}
-                            ${item.highlight ? "font-bold" : ""}
-                            transition-all duration-300 hover:translate-x-2 hover:text-orange
-                          `}
-                        >
-                          {item.label}
-                        </motion.div>
+                        {item.label}
                       </Link>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-20 pt-8 border-t-2 border-orange/50">
-                  <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-cream/60">
-                    APRIL 24 — 25, 2026
-                  </p>
-                  <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-cream/60 mt-2">
-                    NASHIK, MAHARASHTRA
-                  </p>
-                  <div className="mt-8">
-                    <p className="font-script text-3xl text-[#E8C84A]">
-                      Prerna & Arpit
-                    </p>
-                  </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </motion.div>

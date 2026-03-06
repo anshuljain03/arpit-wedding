@@ -6,18 +6,18 @@ export default {
       colors: {
         // Deep olive-green (like the poster's main panel)
         primary: {
-          DEFAULT: "#3A6B4A",
-          50: "#eef5f0",
-          100: "#d4e8da",
-          200: "#a8d1b5",
-          300: "#6fb588",
-          400: "#4f9a6a",
-          500: "#3A6B4A",
-          600: "#305a3e",
-          700: "#264832",
-          800: "#1c3726",
-          900: "#12251a",
-          950: "#0a1610",
+          DEFAULT: "#7A9A7E",
+          50: "#f2f5f2",
+          100: "#e0e8e1",
+          200: "#c2d1c4",
+          300: "#9bb5a0",
+          400: "#7A9A7E",
+          500: "#6B8B6F",
+          600: "#567056",
+          700: "#455A46",
+          800: "#364538",
+          900: "#28332A",
+          950: "#1A221B",
         },
         // Warm gold/amber accent
         accent: {

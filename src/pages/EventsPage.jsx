@@ -12,31 +12,8 @@ const EventsPage = () => {
 
   return (
     <div className="min-h-screen bg-batik-cream">
-      {/* Header */}
-      <section className="min-h-screen flex items-center justify-center px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 batik-bg" />
-        <div className="max-w-screen-lg mx-auto w-full relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-            className="text-center"
-          >
-            <span className="text-label tracking-[0.3em] mb-12 block">
-              WEDDING SCHEDULE
-            </span>
-            <h1 className="font-script text-7xl md:text-8xl lg:text-9xl tracking-tight mb-8 text-primary-500">
-              Two Days
-            </h1>
-            <p className="lead">
-              <em>Sangeet, Ceremony & Reception</em>
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Timeline */}
-      <section className="py-20 md:py-32">
+      <section className="pt-28 pb-20 md:pb-32">
         <div className="max-w-screen-md mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0 }}
