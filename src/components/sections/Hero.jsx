@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import content from "../../data/content.json";
+import flowerData from "../../data/flowerLayout.json";
+import FlowerEditor from "../editor/FlowerEditor";
 import { trackCountdownView } from "../../services/analytics";
 
 dayjs.extend(duration);
@@ -54,6 +56,25 @@ const Hero = () => {
     minutes: 0,
     seconds: 0,
   });
+  const [editorMode, setEditorMode] = useState(
+    () => new URLSearchParams(window.location.search).get("editor") === "true",
+  );
+  const [flowers, setFlowers] = useState(flowerData.flowers);
+  const topClusterRef = useRef(null);
+  const bottomClusterRef = useRef(null);
+  const sectionRef = useRef(null);
+
+  // Toggle editor with Ctrl+Shift+E
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === "E") {
+        e.preventDefault();
+        setEditorMode((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
 
   useEffect(() => {
     const weddingDate = dayjs("2026-04-25 10:00:00");
@@ -84,7 +105,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
       {/* === LIGHT BACKGROUND === */}
       <div className="absolute inset-0 bg-[#FFF5E6]" />
 
@@ -98,196 +119,51 @@ const Hero = () => {
           inset: "calc(clamp(10px, 2vw, 24px) + 2px)",
           background:
             "linear-gradient(180deg, #FFFAF2 0%, #FFF5E6 50%, #FFF0DC 100%)",
+          clipPath: "inset(0)",
         }}
       >
         {/* ===== TOP FLORAL CLUSTER ===== */}
-        <div className="absolute top-0 left-0 right-0 h-[30vh] md:h-[26vh] pointer-events-none">
-          {/* Large anchors — corners */}
-          <FlowerImg
-            src="flower-coral.png"
-            className="w-[40vw] md:w-[24vw] max-w-[360px]"
-            style={{ top: "-10%", left: "-4%", transform: "rotate(-15deg)" }}
-          />
-          <FlowerImg
-            src="flower-peach.png"
-            className="w-[36vw] md:w-[22vw] max-w-[320px]"
-            style={{
-              top: "-8%",
-              right: "-3%",
-              transform: "scaleX(-1) rotate(10deg)",
-            }}
-          />
-          {/* Medium — filling across the top */}
-          <FlowerImg
-            src="flower-orange.png"
-            className="w-[24vw] md:w-[14vw] max-w-[200px] opacity-90"
-            style={{ top: "-8%", left: "20%", transform: "rotate(12deg)" }}
-          />
-          <FlowerImg
-            src="flower-red.png"
-            className="w-[22vw] md:w-[13vw] max-w-[180px]"
-            style={{
-              top: "-6%",
-              left: "42%",
-              transform: "rotate(-8deg) scaleX(-1)",
-            }}
-          />
-          <FlowerImg
-            src="flower-purple.png"
-            className="w-[20vw] md:w-[12vw] max-w-[170px] opacity-90"
-            style={{ top: "-4%", right: "14%", transform: "rotate(-20deg)" }}
-          />
-          <FlowerImg
-            src="flower-yellow.png"
-            className="w-[22vw] md:w-[13vw] max-w-[180px]"
-            style={{ top: "-10%", left: "8%", transform: "rotate(22deg)" }}
-          />
-          <FlowerImg
-            src="flower-pink.png"
-            className="w-[18vw] md:w-[11vw] max-w-[160px] opacity-85"
-            style={{ top: "-5%", right: "30%", transform: "rotate(5deg)" }}
-          />
-          {/* Second row — edge fillers only */}
-          <FlowerImg
-            src="flower-cream.png"
-            className="w-[18vw] md:w-[10vw] max-w-[140px] opacity-80"
-            style={{ top: "2%", left: "2%", transform: "rotate(30deg)" }}
-          />
-          <FlowerImg
-            src="flower-orange.png"
-            className="w-[16vw] md:w-[9vw] max-w-[130px] opacity-80"
-            style={{ top: "4%", right: "3%", transform: "rotate(18deg)" }}
-          />
-          <FlowerImg
-            src="flower-peach.png"
-            className="w-[14vw] md:w-[8vw] max-w-[120px] opacity-70"
-            style={{ top: "-2%", left: "60%", transform: "rotate(15deg)" }}
-          />
-          <FlowerImg
-            src="flower-coral.png"
-            className="w-[12vw] md:w-[7vw] max-w-[100px] opacity-60"
-            style={{ top: "8%", left: "12%", transform: "rotate(-18deg)" }}
-          />
-          <FlowerImg
-            src="flower-purple.png"
-            className="w-[12vw] md:w-[7vw] max-w-[100px] opacity-60"
-            style={{ top: "6%", right: "8%", transform: "rotate(35deg)" }}
-          />
+        <div
+          ref={topClusterRef}
+          className="absolute top-0 left-0 right-0 h-[30vh] md:h-[26vh] pointer-events-none"
+        >
+          {flowers
+            .filter((f) => f.cluster === "top")
+            .map((f) => (
+              <FlowerImg
+                key={f.id}
+                src={f.src}
+                style={{
+                  top: `${f.y}%`,
+                  left: `${f.x}%`,
+                  width: `${f.width}vw`,
+                  opacity: f.opacity,
+                  transform: `rotate(${f.rotation}deg) scaleX(${f.scaleX})`,
+                }}
+              />
+            ))}
         </div>
 
         {/* ===== BOTTOM FLORAL CLUSTER ===== */}
-        <div className="absolute bottom-0 left-0 right-0 h-[30vh] md:h-[26vh] pointer-events-none">
-          {/* Large anchors — corners */}
-          <FlowerImg
-            src="flower-red.png"
-            className="w-[40vw] md:w-[24vw] max-w-[360px]"
-            style={{
-              bottom: "-8%",
-              right: "-3%",
-              transform: "rotate(18deg)",
-            }}
-          />
-          <FlowerImg
-            src="flower-purple.png"
-            className="w-[38vw] md:w-[23vw] max-w-[340px]"
-            style={{
-              bottom: "-6%",
-              left: "-4%",
-              transform: "scaleX(-1) rotate(-15deg)",
-            }}
-          />
-          {/* Medium — filling across the bottom */}
-          <FlowerImg
-            src="flower-pink.png"
-            className="w-[24vw] md:w-[14vw] max-w-[200px] opacity-90"
-            style={{
-              bottom: "-6%",
-              left: "20%",
-              transform: "rotate(-10deg)",
-            }}
-          />
-          <FlowerImg
-            src="flower-yellow.png"
-            className="w-[22vw] md:w-[13vw] max-w-[180px] opacity-90"
-            style={{
-              bottom: "-8%",
-              left: "40%",
-              transform: "rotate(8deg) scaleX(-1)",
-            }}
-          />
-          <FlowerImg
-            src="flower-coral.png"
-            className="w-[20vw] md:w-[12vw] max-w-[170px]"
-            style={{
-              bottom: "-4%",
-              right: "14%",
-              transform: "rotate(-12deg)",
-            }}
-          />
-          <FlowerImg
-            src="flower-peach.png"
-            className="w-[22vw] md:w-[13vw] max-w-[180px]"
-            style={{
-              bottom: "-8%",
-              right: "6%",
-              transform: "rotate(14deg) scaleX(-1)",
-            }}
-          />
-          <FlowerImg
-            src="flower-cream.png"
-            className="w-[18vw] md:w-[11vw] max-w-[160px] opacity-85"
-            style={{
-              bottom: "-5%",
-              left: "58%",
-              transform: "rotate(5deg)",
-            }}
-          />
-          {/* Second row — edge fillers only */}
-          <FlowerImg
-            src="flower-orange.png"
-            className="w-[18vw] md:w-[10vw] max-w-[140px] opacity-80"
-            style={{
-              bottom: "0%",
-              right: "1%",
-              transform: "rotate(28deg)",
-            }}
-          />
-          <FlowerImg
-            src="flower-red.png"
-            className="w-[16vw] md:w-[9vw] max-w-[130px] opacity-80"
-            style={{
-              bottom: "2%",
-              left: "3%",
-              transform: "rotate(22deg)",
-            }}
-          />
-          <FlowerImg
-            src="flower-yellow.png"
-            className="w-[14vw] md:w-[8vw] max-w-[120px] opacity-70"
-            style={{
-              bottom: "-2%",
-              left: "34%",
-              transform: "rotate(-15deg)",
-            }}
-          />
-          <FlowerImg
-            src="flower-pink.png"
-            className="w-[12vw] md:w-[7vw] max-w-[100px] opacity-60"
-            style={{
-              bottom: "6%",
-              right: "10%",
-              transform: "rotate(15deg)",
-            }}
-          />
-          <FlowerImg
-            src="flower-coral.png"
-            className="w-[12vw] md:w-[7vw] max-w-[100px] opacity-60"
-            style={{
-              bottom: "4%",
-              left: "14%",
-              transform: "rotate(-22deg) scaleX(-1)",
-            }}
-          />
+        <div
+          ref={bottomClusterRef}
+          className="absolute bottom-0 left-0 right-0 h-[30vh] md:h-[26vh] pointer-events-none"
+        >
+          {flowers
+            .filter((f) => f.cluster === "bottom")
+            .map((f) => (
+              <FlowerImg
+                key={f.id}
+                src={f.src}
+                style={{
+                  bottom: `${-f.y}%`,
+                  left: `${f.x}%`,
+                  width: `${f.width}vw`,
+                  opacity: f.opacity,
+                  transform: `rotate(${f.rotation}deg) scaleX(${f.scaleX})`,
+                }}
+              />
+            ))}
         </div>
       </div>
 
@@ -486,6 +362,17 @@ const Hero = () => {
           </svg>
         </motion.div>
       </motion.div>
+
+      {/* === FLOWER EDITOR OVERLAY === */}
+      {editorMode && (
+        <FlowerEditor
+          flowers={flowers}
+          setFlowers={setFlowers}
+          sectionRef={sectionRef}
+          topClusterRef={topClusterRef}
+          bottomClusterRef={bottomClusterRef}
+        />
+      )}
     </section>
   );
 };

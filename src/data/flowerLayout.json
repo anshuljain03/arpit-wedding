@@ -1,0 +1,268 @@
+{
+  "flowers": [
+    {
+      "id": "t1",
+      "src": "flower-coral.png",
+      "x": -13.6,
+      "y": -6.2,
+      "width": 24,
+      "rotation": -15,
+      "scaleX": 1,
+      "opacity": 1,
+      "cluster": "top"
+    },
+    {
+      "id": "t2",
+      "src": "flower-peach.png",
+      "x": 78,
+      "y": -8,
+      "width": 22,
+      "rotation": 10,
+      "scaleX": -1,
+      "opacity": 1,
+      "cluster": "top"
+    },
+    {
+      "id": "t3",
+      "src": "flower-orange.png",
+      "x": 20,
+      "y": -8,
+      "width": 14,
+      "rotation": 12,
+      "scaleX": 1,
+      "opacity": 0.9,
+      "cluster": "top"
+    },
+    {
+      "id": "t4",
+      "src": "flower-red.png",
+      "x": 42,
+      "y": -6,
+      "width": 13,
+      "rotation": -8,
+      "scaleX": -1,
+      "opacity": 1,
+      "cluster": "top"
+    },
+    {
+      "id": "t5",
+      "src": "flower-purple.png",
+      "x": 72,
+      "y": -4,
+      "width": 12,
+      "rotation": -20,
+      "scaleX": 1,
+      "opacity": 0.9,
+      "cluster": "top"
+    },
+    {
+      "id": "t6",
+      "src": "flower-yellow.png",
+      "x": 8,
+      "y": -10,
+      "width": 13,
+      "rotation": 22,
+      "scaleX": 1,
+      "opacity": 1,
+      "cluster": "top"
+    },
+    {
+      "id": "t7",
+      "src": "flower-pink.png",
+      "x": 56,
+      "y": -5,
+      "width": 11,
+      "rotation": 5,
+      "scaleX": 1,
+      "opacity": 0.85,
+      "cluster": "top"
+    },
+    {
+      "id": "t8",
+      "src": "flower-cream.png",
+      "x": 2,
+      "y": 2,
+      "width": 10,
+      "rotation": 30,
+      "scaleX": 1,
+      "opacity": 0.8,
+      "cluster": "top"
+    },
+    {
+      "id": "t9",
+      "src": "flower-orange.png",
+      "x": 84,
+      "y": 4,
+      "width": 9,
+      "rotation": 18,
+      "scaleX": 1,
+      "opacity": 0.8,
+      "cluster": "top"
+    },
+    {
+      "id": "t10",
+      "src": "flower-peach.png",
+      "x": 60,
+      "y": -2,
+      "width": 8,
+      "rotation": 15,
+      "scaleX": 1,
+      "opacity": 0.7,
+      "cluster": "top"
+    },
+    {
+      "id": "t11",
+      "src": "flower-coral.png",
+      "x": 12,
+      "y": 8,
+      "width": 7,
+      "rotation": -18,
+      "scaleX": 1,
+      "opacity": 0.6,
+      "cluster": "top"
+    },
+    {
+      "id": "t12",
+      "src": "flower-purple.png",
+      "x": 80,
+      "y": 6,
+      "width": 7,
+      "rotation": 35,
+      "scaleX": 1,
+      "opacity": 0.6,
+      "cluster": "top"
+    },
+    {
+      "id": "b1",
+      "src": "flower-red.png",
+      "x": 78,
+      "y": -8,
+      "width": 24,
+      "rotation": 18,
+      "scaleX": 1,
+      "opacity": 1,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b2",
+      "src": "flower-purple.png",
+      "x": -4,
+      "y": -6,
+      "width": 23,
+      "rotation": -15,
+      "scaleX": -1,
+      "opacity": 1,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b3",
+      "src": "flower-pink.png",
+      "x": 20,
+      "y": -6,
+      "width": 14,
+      "rotation": -10,
+      "scaleX": 1,
+      "opacity": 0.9,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b4",
+      "src": "flower-yellow.png",
+      "x": 40,
+      "y": -8,
+      "width": 13,
+      "rotation": 8,
+      "scaleX": -1,
+      "opacity": 0.9,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b5",
+      "src": "flower-coral.png",
+      "x": 72,
+      "y": -4,
+      "width": 12,
+      "rotation": -12,
+      "scaleX": 1,
+      "opacity": 1,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b6",
+      "src": "flower-peach.png",
+      "x": 80,
+      "y": -8,
+      "width": 13,
+      "rotation": 14,
+      "scaleX": -1,
+      "opacity": 1,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b7",
+      "src": "flower-cream.png",
+      "x": 58,
+      "y": -5,
+      "width": 11,
+      "rotation": 5,
+      "scaleX": 1,
+      "opacity": 0.85,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b8",
+      "src": "flower-orange.png",
+      "x": 86,
+      "y": 0,
+      "width": 10,
+      "rotation": 28,
+      "scaleX": 1,
+      "opacity": 0.8,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b9",
+      "src": "flower-red.png",
+      "x": 3,
+      "y": 2,
+      "width": 9,
+      "rotation": 22,
+      "scaleX": 1,
+      "opacity": 0.8,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b10",
+      "src": "flower-yellow.png",
+      "x": 34,
+      "y": -2,
+      "width": 8,
+      "rotation": -15,
+      "scaleX": 1,
+      "opacity": 0.7,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b11",
+      "src": "flower-pink.png",
+      "x": 78,
+      "y": 6,
+      "width": 7,
+      "rotation": 15,
+      "scaleX": 1,
+      "opacity": 0.6,
+      "cluster": "bottom"
+    },
+    {
+      "id": "b12",
+      "src": "flower-coral.png",
+      "x": 14,
+      "y": 4,
+      "width": 7,
+      "rotation": -22,
+      "scaleX": -1,
+      "opacity": 0.6,
+      "cluster": "bottom"
+    }
+  ]
+}
