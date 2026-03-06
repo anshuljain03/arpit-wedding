@@ -10,11 +10,14 @@ const Divider = ({ motif = "diamond", className = "" }) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M10 0L20 10L10 20L0 10L10 0Z" fill="#E87A4A" />
+        <path
+          d="M10 0L20 10L10 20L0 10L10 0Z"
+          style={{ fill: "var(--theme-orange)" }}
+        />
         <path
           d="M10 4L16 10L10 16L4 10L10 4Z"
           fill="none"
-          stroke="#D4993D"
+          style={{ stroke: "var(--theme-gold)" }}
           strokeWidth="1"
         />
       </svg>
@@ -27,13 +30,13 @@ const Divider = ({ motif = "diamond", className = "" }) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="16" cy="16" r="5" fill="#E87A4A" />
+        <circle cx="16" cy="16" r="5" style={{ fill: "var(--theme-orange)" }} />
         <ellipse
           cx="16"
           cy="6"
           rx="3"
           ry="5"
-          fill="#E8508A"
+          style={{ fill: "var(--theme-floral-pink)" }}
           fillOpacity="0.8"
         />
         <ellipse
@@ -41,7 +44,7 @@ const Divider = ({ motif = "diamond", className = "" }) => {
           cy="26"
           rx="3"
           ry="5"
-          fill="#E8508A"
+          style={{ fill: "var(--theme-floral-pink)" }}
           fillOpacity="0.8"
         />
         <ellipse
@@ -49,7 +52,7 @@ const Divider = ({ motif = "diamond", className = "" }) => {
           cy="16"
           rx="5"
           ry="3"
-          fill="#4A7EC8"
+          style={{ fill: "var(--theme-floral-blue)" }}
           fillOpacity="0.8"
         />
         <ellipse
@@ -57,7 +60,7 @@ const Divider = ({ motif = "diamond", className = "" }) => {
           cy="16"
           rx="5"
           ry="3"
-          fill="#4A7EC8"
+          style={{ fill: "var(--theme-floral-blue)" }}
           fillOpacity="0.8"
         />
         <ellipse
@@ -65,7 +68,7 @@ const Divider = ({ motif = "diamond", className = "" }) => {
           cy="9"
           rx="3"
           ry="2"
-          fill="#D4993D"
+          style={{ fill: "var(--theme-gold)" }}
           fillOpacity="0.7"
           transform="rotate(-45 9 9)"
         />
@@ -74,7 +77,7 @@ const Divider = ({ motif = "diamond", className = "" }) => {
           cy="9"
           rx="3"
           ry="2"
-          fill="#D4993D"
+          style={{ fill: "var(--theme-gold)" }}
           fillOpacity="0.7"
           transform="rotate(45 23 9)"
         />
@@ -83,7 +86,7 @@ const Divider = ({ motif = "diamond", className = "" }) => {
           cy="23"
           rx="3"
           ry="2"
-          fill="#D4993D"
+          style={{ fill: "var(--theme-gold)" }}
           fillOpacity="0.7"
           transform="rotate(45 9 23)"
         />
@@ -92,7 +95,7 @@ const Divider = ({ motif = "diamond", className = "" }) => {
           cy="23"
           rx="3"
           ry="2"
-          fill="#D4993D"
+          style={{ fill: "var(--theme-gold)" }}
           fillOpacity="0.7"
           transform="rotate(-45 23 23)"
         />
@@ -110,11 +113,11 @@ const Divider = ({ motif = "diamond", className = "" }) => {
           cx="12"
           cy="12"
           r="10"
-          stroke="#E87A4A"
+          style={{ stroke: "var(--theme-orange)" }}
           strokeWidth="2"
           fill="none"
         />
-        <circle cx="12" cy="12" r="3" fill="#E87A4A" />
+        <circle cx="12" cy="12" r="3" style={{ fill: "var(--theme-orange)" }} />
       </svg>
     ),
   };

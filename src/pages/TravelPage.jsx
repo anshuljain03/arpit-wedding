@@ -88,7 +88,7 @@ const TravelPage = () => {
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           >
             <Divider motif="diamond" className="mb-8" />
-            <h2 className="font-script text-4xl lg:text-5xl tracking-tight mb-16 text-center text-[#E8C84A]">
+            <h2 className="font-script text-4xl lg:text-5xl tracking-tight mb-16 text-center text-[var(--theme-gold-light)]">
               From Major Cities
             </h2>
 
@@ -142,33 +142,33 @@ const TravelPage = () => {
               ].map((route) => (
                 <motion.div
                   key={route.city}
-                  className="border-2 border-orange/40 p-6"
+                  className="border-2 border-[var(--theme-gold)]/40 p-6"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h3 className="text-2xl font-display font-semibold mb-6 text-[#E8C84A]">
+                  <h3 className="text-2xl font-display font-semibold mb-6 text-[var(--theme-gold-light)]">
                     {route.city}
                   </h3>
                   <div className="grid md:grid-cols-2 gap-8 text-sm">
                     <div>
-                      <p className="text-xs font-sans font-bold uppercase tracking-[0.25em] text-orange mb-3">
+                      <p className="text-xs font-sans font-bold uppercase tracking-[0.25em] text-[var(--theme-gold-light)] mb-3">
                         {route.flight.label || "FLIGHT"}
                       </p>
-                      <p className="font-semibold leading-relaxed mb-2 text-cream">
+                      <p className="font-semibold leading-relaxed mb-2 text-white">
                         {route.flight.info}
                       </p>
-                      <p className="text-cream/60 mb-4">{route.flight.time}</p>
+                      <p className="text-white/70 mb-4">{route.flight.time}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-sans font-bold uppercase tracking-[0.25em] text-orange mb-3">
+                      <p className="text-xs font-sans font-bold uppercase tracking-[0.25em] text-[var(--theme-gold-light)] mb-3">
                         TRAIN
                       </p>
-                      <p className="font-semibold leading-relaxed mb-2 text-cream">
+                      <p className="font-semibold leading-relaxed mb-2 text-white">
                         {route.train.info}
                       </p>
-                      <p className="text-cream/60 mb-4">{route.train.time}</p>
+                      <p className="text-white/70 mb-4">{route.train.time}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -179,7 +179,7 @@ const TravelPage = () => {
       </section>
 
       {/* Booking Notes */}
-      <section className="py-20 md:py-32 border-t-4 border-orange">
+      <section className="py-20 md:py-32 border-t-4 border-[var(--theme-gold)]">
         <div className="max-w-screen-sm mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0 }}

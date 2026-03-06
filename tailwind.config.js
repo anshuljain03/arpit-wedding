@@ -4,20 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Deep olive-green (like the poster's main panel)
+        // Muted eucalyptus green (key stops use CSS vars for runtime theming)
         primary: {
-          DEFAULT: "#7A9A7E",
-          50: "#f2f5f2",
-          100: "#e0e8e1",
-          200: "#c2d1c4",
-          300: "#9bb5a0",
-          400: "#7A9A7E",
-          500: "#6B8B6F",
-          600: "#567056",
-          700: "#455A46",
-          800: "#364538",
-          900: "#28332A",
-          950: "#1A221B",
+          DEFAULT: "var(--theme-green-light)",
+          50: "#f4f6f4",
+          100: "#e5ebe6",
+          200: "#cdd7cf",
+          300: "#adbfb1",
+          400: "var(--theme-green-light)",
+          500: "var(--theme-green)",
+          600: "var(--theme-green-dark)",
+          700: "#556559",
+          800: "#454F47",
+          900: "#343C36",
+          950: "#222824",
         },
         // Warm gold/amber accent
         accent: {
@@ -28,7 +28,7 @@ export default {
         },
         // Bold orange for borders (poster's thick frame)
         orange: {
-          DEFAULT: "#E87A4A",
+          DEFAULT: "var(--theme-orange)",
           light: "#F09B73",
           dark: "#C45E30",
         },
@@ -42,11 +42,11 @@ export default {
         },
         // Background tones
         batik: {
-          cream: "#FFF5E6",
+          cream: "var(--theme-cream)",
           maroon: "#7A2E3B",
           teal: "#2A7B6F",
         },
-        cream: "#FFF5E6",
+        cream: "var(--theme-cream)",
         sand: "#FCECD0",
         stone: "#F5E4CC",
       },

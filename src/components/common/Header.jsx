@@ -41,10 +41,10 @@ const Header = () => {
     <>
       {/* Desktop floating pill */}
       <motion.nav
-        initial={{ y: 60, opacity: 0 }}
-        animate={{ y: showNav ? 0 : 60, opacity: showNav ? 1 : 0 }}
+        initial={{ x: "-50%", y: 60, opacity: 0 }}
+        animate={{ x: "-50%", y: showNav ? 0 : 60, opacity: showNav ? 1 : 0 }}
         transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden md:flex items-center gap-8 bg-white/80 backdrop-blur-md rounded-full px-8 py-2.5 shadow-sm border border-[#D4993D]/20"
+        className="fixed bottom-6 left-1/2 z-50 hidden md:flex items-center gap-8 bg-white/80 backdrop-blur-md rounded-full px-8 py-2.5 shadow-sm border border-[var(--theme-gold)]/20"
       >
         {navItems.map((item) => (
           <Link
@@ -56,7 +56,7 @@ const Header = () => {
             <span
               className={`
                 text-[11px] font-sans font-semibold uppercase tracking-[0.2em] transition-colors duration-300
-                ${location.pathname === item.path ? "text-[#D4993D]" : "text-primary-600 hover:text-[#D4993D]"}
+                ${location.pathname === item.path ? "text-[var(--theme-gold)]" : "text-primary-600 hover:text-[var(--theme-gold)]"}
               `}
             >
               {item.label}
@@ -64,7 +64,7 @@ const Header = () => {
             {location.pathname === item.path && (
               <motion.div
                 layoutId="activePill"
-                className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#D4993D] rounded-full"
+                className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[var(--theme-gold)] rounded-full"
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}
@@ -80,7 +80,7 @@ const Header = () => {
           opacity: showNav ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="fixed bottom-6 right-4 z-50 md:hidden w-11 h-11 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-[#D4993D]/20 flex items-center justify-center cursor-pointer"
+        className="fixed bottom-6 right-4 z-50 md:hidden w-11 h-11 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-[var(--theme-gold)]/20 flex items-center justify-center cursor-pointer"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label="Toggle menu"
       >
@@ -132,8 +132,8 @@ const Header = () => {
                         }
                         className={`
                           block text-base font-sans font-semibold tracking-wide
-                          ${location.pathname === item.path ? "text-[#D4993D]" : "text-primary-600"}
-                          transition-all duration-300 hover:translate-x-1 hover:text-[#D4993D]
+                          ${location.pathname === item.path ? "text-[var(--theme-gold)]" : "text-primary-600"}
+                          transition-all duration-300 hover:translate-x-1 hover:text-[var(--theme-gold)]
                         `}
                       >
                         {item.label}

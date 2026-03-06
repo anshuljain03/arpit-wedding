@@ -122,7 +122,7 @@ const CeremoniesPage = () => {
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           >
             <Divider motif="diamond" className="mb-8" />
-            <h2 className="font-script text-4xl lg:text-5xl tracking-tight mb-16 text-center text-[#E8C84A]">
+            <h2 className="font-script text-4xl lg:text-5xl tracking-tight mb-16 text-center text-[var(--theme-gold-light)]">
               Traditions & Customs
             </h2>
 
@@ -136,7 +136,7 @@ const CeremoniesPage = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="text-center border-2 border-orange/40 p-8"
                 >
-                  <h3 className="text-xl font-display font-semibold mb-4 text-[#E8C84A]">
+                  <h3 className="text-xl font-display font-semibold mb-4 text-[var(--theme-gold-light)]">
                     {tradition.name}
                   </h3>
                   <p className="text-sm text-cream/80 leading-relaxed max-w-lg mx-auto">

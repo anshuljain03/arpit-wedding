@@ -31,12 +31,19 @@
     --letter-wider: 0.15em;
     --letter-widest: 0.25em;
 
-    --color-green: #7a9a7e;
-    --color-orange: #e87a4a;
-    --color-gold: #d4993d;
-    --color-cream: #fff5e6;
-    --color-pink: #e8508a;
-    --color-blue: #4a7ec8;
+    --theme-green: #7a8e7f;
+    --theme-green-light: #8a9e8f;
+    --theme-green-dark: #6a7e6f;
+    --theme-gold: #d4993d;
+    --theme-gold-light: #e8c84a;
+    --theme-orange: #e87a4a;
+    --theme-cream: #fff5e6;
+    --theme-cream-light: #fffaf2;
+    --theme-cream-dark: #fff0dc;
+    --theme-floral-pink: #e8508a;
+    --theme-floral-blue: #4a7ec8;
+    --theme-text-muted: #999999;
+    --theme-text-dark: #5a5a5a;
   }
 
   html {
@@ -59,8 +66,8 @@
   }
 
   ::selection {
-    background: #7a9a7e;
-    color: #fff5e6;
+    background: var(--theme-green);
+    color: var(--theme-cream);
   }
 
   .type-display {
@@ -69,7 +76,7 @@
     font-weight: 600;
     line-height: 0.9;
     letter-spacing: var(--letter-tight);
-    color: #fff5e6;
+    color: var(--theme-cream);
   }
 
   h1,
@@ -132,7 +139,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: var(--letter-widest);
-    color: #7a9a7e;
+    color: var(--theme-green);
   }
 
   .text-caption {
@@ -163,17 +170,26 @@
     letter-spacing: var(--letter-wider);
     text-transform: uppercase;
     padding: 1.125rem 2.5rem;
-    background: linear-gradient(135deg, #7a9a7e 0%, #455a46 100%);
-    color: #fff5e6;
-    border: 3px solid #e87a4a;
+    background: linear-gradient(
+      135deg,
+      var(--theme-green) 0%,
+      var(--theme-green-dark) 100%
+    );
+    color: var(--theme-cream);
+    border: 3px solid var(--theme-orange);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, #e87a4a 0%, #c45e30 100%);
-    color: #fff5e6;
+    background: linear-gradient(
+      135deg,
+      var(--theme-orange) 0%,
+      color-mix(in srgb, var(--theme-orange), black 20%) 100%
+    );
+    color: var(--theme-cream);
     letter-spacing: var(--letter-widest);
-    box-shadow: 0 4px 20px rgba(232, 122, 74, 0.4);
+    box-shadow: 0 4px 20px
+      color-mix(in srgb, var(--theme-orange), transparent 60%);
   }
 
   .btn-secondary {
@@ -184,8 +200,8 @@
     text-transform: uppercase;
     padding: 1rem 2.25rem;
     background: transparent;
-    color: #7a9a7e;
-    border: 3px solid #e87a4a;
+    color: var(--theme-green);
+    border: 3px solid var(--theme-orange);
     position: relative;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   }
@@ -197,14 +213,18 @@
     left: 0;
     width: 0;
     height: 100%;
-    background: linear-gradient(135deg, #7a9a7e, #455a46);
+    background: linear-gradient(
+      135deg,
+      var(--theme-green),
+      var(--theme-green-dark)
+    );
     transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     z-index: -1;
   }
 
   .btn-secondary:hover {
-    color: #fff5e6;
-    border-color: #7a9a7e;
+    color: var(--theme-cream);
+    border-color: var(--theme-green);
   }
 
   .btn-secondary:hover::before {
@@ -215,8 +235,8 @@
     position: relative;
     font-weight: 500;
     text-decoration: none;
-    color: #7a9a7e;
-    background-image: linear-gradient(#e87a4a, #e87a4a);
+    color: var(--theme-green);
+    background-image: linear-gradient(var(--theme-orange), var(--theme-orange));
     background-position: 0% 100%;
     background-repeat: no-repeat;
     background-size: 0% 2px;
@@ -231,7 +251,7 @@
   .card-editorial {
     @apply bg-white;
     padding: var(--space-md);
-    border: 3px solid #e87a4a;
+    border: 3px solid var(--theme-orange);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
   }
@@ -240,14 +260,15 @@
     content: "";
     position: absolute;
     inset: -8px;
-    border: 2px solid rgba(232, 122, 74, 0.3);
+    border: 2px solid color-mix(in srgb, var(--theme-orange), transparent 70%);
     pointer-events: none;
   }
 
   .card-editorial:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(58, 107, 74, 0.15);
-    border-color: #d4993d;
+    box-shadow: 0 8px 30px
+      color-mix(in srgb, var(--theme-green), transparent 85%);
+    border-color: var(--theme-gold);
   }
 
   .prose-elegant {
@@ -364,17 +385,22 @@
     content: "";
     flex: 1;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #e87a4a, transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--theme-orange),
+      transparent
+    );
   }
 
   .script-heading {
     font-family: "Great Vibes", cursive;
-    color: #d4993d;
+    color: var(--theme-gold);
   }
 
-  /* Bold orange frame (like the poster border) */
+  /* Bold frame */
   .frame-gold {
-    border: 4px solid #e87a4a;
+    border: 4px solid var(--theme-orange);
     padding: 2rem;
     position: relative;
   }
@@ -386,14 +412,18 @@
     left: 8px;
     right: 8px;
     bottom: 8px;
-    border: 2px solid rgba(232, 122, 74, 0.5);
+    border: 2px solid color-mix(in srgb, var(--theme-orange), transparent 50%);
     pointer-events: none;
   }
 
-  /* Hero green panel (poster's central green area) */
+  /* Hero green panel */
   .hero-panel {
-    background: linear-gradient(180deg, #6b8b6f 0%, #567056 100%);
-    border: 4px solid #e87a4a;
+    background: linear-gradient(
+      180deg,
+      var(--theme-green-light) 0%,
+      var(--theme-green) 100%
+    );
+    border: 4px solid var(--theme-gold);
     position: relative;
   }
 
@@ -404,7 +434,8 @@
     left: 6px;
     right: 6px;
     bottom: 6px;
-    border: 2px solid rgba(232, 200, 74, 0.3);
+    border: 2px solid
+      color-mix(in srgb, var(--theme-gold-light), transparent 70%);
     pointer-events: none;
     z-index: 1;
   }
@@ -462,18 +493,18 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #fff5e6;
+  background: var(--theme-cream);
 }
 ::-webkit-scrollbar-thumb {
-  background: #7a9a7e;
+  background: var(--theme-green);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #e87a4a;
+  background: var(--theme-orange);
 }
 
 :focus-visible {
-  outline: 3px solid #e87a4a;
+  outline: 3px solid var(--theme-orange);
   outline-offset: 4px;
 }
 

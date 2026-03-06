@@ -26,34 +26,34 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl lg:text-6xl font-script text-[#E8C84A] mb-20">
+            <h2 className="text-5xl lg:text-6xl font-script text-[var(--theme-gold-light)] mb-20">
               Details
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="border-2 border-orange/40 p-6">
-                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-orange mb-3">
+              <div className="border-2 border-[var(--theme-gold)]/40 p-6">
+                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-[var(--theme-gold)] mb-3">
                   Venue
                 </p>
-                <p className="text-lg font-semibold text-cream">
+                <p className="text-lg font-semibold text-white">
                   Radisson Nashik
                 </p>
               </div>
 
-              <div className="border-2 border-orange/40 p-6">
-                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-orange mb-3">
+              <div className="border-2 border-[var(--theme-gold)]/40 p-6">
+                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-[var(--theme-gold)] mb-3">
                   When
                 </p>
-                <p className="text-lg font-semibold text-cream">
+                <p className="text-lg font-semibold text-white">
                   April 24 — 25, 2026
                 </p>
               </div>
 
-              <div className="border-2 border-orange/40 p-6">
-                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-orange mb-3">
+              <div className="border-2 border-[var(--theme-gold)]/40 p-6">
+                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-[var(--theme-gold)] mb-3">
                   Where
                 </p>
-                <p className="text-lg font-semibold text-cream">
+                <p className="text-lg font-semibold text-white">
                   Nashik, Maharashtra
                 </p>
               </div>
@@ -64,7 +64,7 @@ const HomePage = () => {
                 trackClick("Details RSVP Button");
                 navigate("/rsvp");
               }}
-              className="mt-20 bg-orange hover:bg-orange-dark text-white font-sans text-sm font-bold tracking-[0.2em] uppercase px-12 py-4 border-2 border-[#E8C84A] transition-all duration-300 hover:shadow-lg hover:shadow-orange/40 cursor-pointer"
+              className="mt-20 bg-[var(--theme-gold)] hover:bg-[var(--theme-gold)] text-white font-sans text-sm font-bold tracking-[0.2em] uppercase px-12 py-4 border-2 border-[var(--theme-gold-light)] transition-all duration-300 hover:shadow-lg hover:shadow-[var(--theme-gold)]/40 cursor-pointer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -84,7 +84,7 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <p className="font-script text-4xl text-[#D4993D] mb-6">
+            <p className="font-script text-4xl text-[var(--theme-gold)] mb-6">
               With Love
             </p>
             <p className="text-2xl lg:text-3xl font-display font-semibold leading-relaxed text-primary-500">

@@ -15,7 +15,7 @@ const Card = ({
     bg-white
     ${border ? "border-3 border-orange" : ""}
     ${padding ? "p-8 lg:p-12" : ""}
-    ${hover ? "hover:border-[#D4993D] hover:shadow-lg hover:shadow-primary-500/10 transition-all duration-300 cursor-pointer" : ""}
+    ${hover ? "hover:border-[var(--theme-gold)] hover:shadow-lg hover:shadow-primary-500/10 transition-all duration-300 cursor-pointer" : ""}
     ${className}
   `;
 

@@ -98,7 +98,10 @@ const RSVPPage = () => {
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             className="w-20 h-20 mx-auto mb-8 border-3 border-orange rounded-full flex items-center justify-center bg-primary-500"
           >
-            <Check className="w-8 h-8 text-[#E8C84A]" strokeWidth={2} />
+            <Check
+              className="w-8 h-8 text-[var(--theme-gold-light)]"
+              strokeWidth={2}
+            />
           </motion.div>
           <h2 className="font-script text-5xl tracking-tight mb-4 text-primary-500">
             Thank You
@@ -310,7 +313,7 @@ const RSVPPage = () => {
                         >
                           {formData.events[event.id] && (
                             <Check
-                              className="w-3.5 h-3.5 text-[#E8C84A]"
+                              className="w-3.5 h-3.5 text-[var(--theme-gold-light)]"
                               strokeWidth={3}
                             />
                           )}

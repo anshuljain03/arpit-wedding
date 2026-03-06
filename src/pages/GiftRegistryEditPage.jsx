@@ -80,7 +80,7 @@ const GiftRegistryEditPage = () => {
           transition={{ duration: 0.6 }}
         >
           <h1
-            className="text-4xl lg:text-5xl text-[#D4993D] mb-2 text-center"
+            className="text-4xl lg:text-5xl text-[var(--theme-gold)] mb-2 text-center"
             style={{ fontFamily: "'Cormorant SC', serif", fontWeight: 600 }}
           >
             Edit Gift Registry
@@ -93,7 +93,7 @@ const GiftRegistryEditPage = () => {
             {registries.map((registry) => (
               <div
                 key={registry.id}
-                className="bg-white border border-[#D4993D]/20 p-6 space-y-4"
+                className="bg-white border border-[var(--theme-gold)]/20 p-6 space-y-4"
               >
                 <div className="flex items-center justify-between">
                   <GripVertical
@@ -120,7 +120,7 @@ const GiftRegistryEditPage = () => {
                       handleChange(registry.id, "name", e.target.value)
                     }
                     placeholder="e.g. Amazon"
-                    className="w-full px-3 py-2 border border-primary-200 text-primary-700 text-sm focus:outline-none focus:border-[#D4993D] transition-colors"
+                    className="w-full px-3 py-2 border border-primary-200 text-primary-700 text-sm focus:outline-none focus:border-[var(--theme-gold)] transition-colors"
                   />
                 </div>
 
@@ -135,7 +135,7 @@ const GiftRegistryEditPage = () => {
                       handleChange(registry.id, "url", e.target.value)
                     }
                     placeholder="https://..."
-                    className="w-full px-3 py-2 border border-primary-200 text-primary-700 text-sm focus:outline-none focus:border-[#D4993D] transition-colors"
+                    className="w-full px-3 py-2 border border-primary-200 text-primary-700 text-sm focus:outline-none focus:border-[var(--theme-gold)] transition-colors"
                   />
                 </div>
 
@@ -150,7 +150,7 @@ const GiftRegistryEditPage = () => {
                       handleChange(registry.id, "description", e.target.value)
                     }
                     placeholder="Short description"
-                    className="w-full px-3 py-2 border border-primary-200 text-primary-700 text-sm focus:outline-none focus:border-[#D4993D] transition-colors"
+                    className="w-full px-3 py-2 border border-primary-200 text-primary-700 text-sm focus:outline-none focus:border-[var(--theme-gold)] transition-colors"
                   />
                 </div>
               </div>
@@ -160,7 +160,7 @@ const GiftRegistryEditPage = () => {
           <div className="flex items-center justify-between mt-8 gap-4">
             <button
               onClick={handleAdd}
-              className="flex items-center gap-2 text-sm font-semibold text-primary-500 hover:text-[#D4993D] transition-colors cursor-pointer"
+              className="flex items-center gap-2 text-sm font-semibold text-primary-500 hover:text-[var(--theme-gold)] transition-colors cursor-pointer"
             >
               <Plus size={16} />
               Add Entry

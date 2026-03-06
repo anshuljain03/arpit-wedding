@@ -36,16 +36,26 @@ const GoldOrnament = ({ width = "200px", className = "" }) => (
     style={{ width }}
     className={`mx-auto ${className}`}
   >
-    <line x1="0" y1="10" x2="85" y2="10" stroke="#D4993D" strokeWidth="0.5" />
+    <line
+      x1="0"
+      y1="10"
+      x2="85"
+      y2="10"
+      style={{ stroke: "var(--theme-gold)" }}
+      strokeWidth="0.5"
+    />
     <line
       x1="115"
       y1="10"
       x2="200"
       y2="10"
-      stroke="#D4993D"
+      style={{ stroke: "var(--theme-gold)" }}
       strokeWidth="0.5"
     />
-    <path d="M95 10 L100 5 L105 10 L100 15 Z" fill="#D4993D" />
+    <path
+      d="M95 10 L100 5 L105 10 L100 15 Z"
+      style={{ fill: "var(--theme-gold)" }}
+    />
   </svg>
 );
 
@@ -106,10 +116,10 @@ const Hero = () => {
   return (
     <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
       {/* === LIGHT BACKGROUND === */}
-      <div className="absolute inset-0 bg-[#FFF5E6]" />
+      <div className="absolute inset-0 bg-[var(--theme-cream)]" />
 
       {/* === BRIGHT GOLD BORDER === */}
-      <div className="absolute inset-[clamp(10px,2vw,24px)] border-2 border-[#D4993D] z-[1]" />
+      <div className="absolute inset-[clamp(10px,2vw,24px)] border-2 border-[var(--theme-gold)] z-[1]" />
 
       {/* === CREAM CENTER === */}
       <div
@@ -117,7 +127,7 @@ const Hero = () => {
         style={{
           inset: "calc(clamp(10px, 2vw, 24px) + 2px)",
           background:
-            "linear-gradient(180deg, #FFFAF2 0%, #FFF5E6 50%, #FFF0DC 100%)",
+            "linear-gradient(180deg, var(--theme-cream-light) 0%, var(--theme-cream) 50%, var(--theme-cream-dark) 100%)",
           clipPath: "inset(0)",
         }}
       >
@@ -183,7 +193,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                className="text-base md:text-lg text-[#8B6914] mb-8 tracking-[0.3em] uppercase"
+                className="text-base md:text-lg text-[var(--theme-gold)] mb-8 tracking-[0.3em] uppercase"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 300,
@@ -204,7 +214,7 @@ const Hero = () => {
                 className="mb-6 md:mb-8"
               >
                 <motion.h1
-                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[#3D5A40] leading-none tracking-[0.12em] font-semibold"
+                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[var(--theme-green-dark)] leading-none tracking-[0.12em] font-semibold"
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{
@@ -230,7 +240,7 @@ const Hero = () => {
                   }}
                 >
                   <span
-                    className="text-2xl md:text-3xl text-[#D4993D] font-light"
+                    className="text-2xl md:text-3xl text-[var(--theme-gold)] font-light"
                     style={{
                       fontFamily: "'Playfair Display', serif",
                       fontStyle: "italic",
@@ -241,7 +251,7 @@ const Hero = () => {
                 </motion.div>
 
                 <motion.h1
-                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[#3D5A40] leading-none tracking-[0.12em] font-semibold"
+                  className="font-script text-5xl md:text-7xl lg:text-8xl text-[var(--theme-green-dark)] leading-none tracking-[0.12em] font-semibold"
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{
@@ -277,7 +287,7 @@ const Hero = () => {
                   delay: 1,
                   ease: [0.23, 1, 0.32, 1],
                 }}
-                className="font-sans text-[11px] md:text-xs font-medium tracking-[0.25em] uppercase text-[#5A5A5A] mb-2"
+                className="font-sans text-[11px] md:text-xs font-medium tracking-[0.25em] uppercase text-[var(--theme-text-dark)] mb-2"
               >
                 April 24 — 25, 2026
               </motion.p>
@@ -290,7 +300,7 @@ const Hero = () => {
                   delay: 1.1,
                   ease: [0.23, 1, 0.32, 1],
                 }}
-                className="text-lg md:text-xl text-[#7A7A7A] italic mb-10"
+                className="text-lg md:text-xl text-[var(--theme-text-muted)] italic mb-10"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 300,
@@ -315,10 +325,10 @@ const Hero = () => {
                   { value: countdown.minutes, label: "Min" },
                 ].map((item) => (
                   <div key={item.label} className="text-center">
-                    <div className="font-display text-3xl md:text-5xl font-medium text-[#8B6914]">
+                    <div className="font-display text-3xl md:text-5xl font-medium text-[var(--theme-gold)]">
                       {String(item.value).padStart(2, "0")}
                     </div>
-                    <p className="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-[#999] mt-1">
+                    <p className="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-[var(--theme-text-muted)] mt-1">
                       {item.label}
                     </p>
                   </div>
@@ -344,7 +354,7 @@ const Hero = () => {
             window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
           }
         >
-          <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#999] font-semibold">
+          <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[var(--theme-text-muted)] font-semibold">
             Scroll
           </span>
           <svg width="2" height="24" viewBox="0 0 2 24" fill="none">
@@ -353,7 +363,7 @@ const Hero = () => {
               y1="0"
               x2="1"
               y2="24"
-              stroke="#999999"
+              style={{ stroke: "var(--theme-text-muted)" }}
               strokeWidth="2"
               strokeDasharray="4 3"
               strokeOpacity="0.5"

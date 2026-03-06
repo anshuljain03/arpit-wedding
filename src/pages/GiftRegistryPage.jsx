@@ -40,7 +40,7 @@ const GiftRegistryPage = () => {
           className="text-center mb-16"
         >
           <h1
-            className="text-5xl lg:text-6xl text-[#D4993D] mb-4"
+            className="text-5xl lg:text-6xl text-[var(--theme-gold)] mb-4"
             style={{ fontFamily: "'Cormorant SC', serif", fontWeight: 600 }}
           >
             Gift Registry
@@ -69,10 +69,10 @@ const GiftRegistryPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className="group flex items-center justify-between bg-white border border-[#D4993D]/20 px-8 py-6 transition-all duration-300 hover:border-[#D4993D]/50 hover:shadow-sm"
+              className="group flex items-center justify-between bg-white border border-[var(--theme-gold)]/20 px-8 py-6 transition-all duration-300 hover:border-[var(--theme-gold)]/50 hover:shadow-sm"
             >
               <div>
-                <h3 className="text-xl font-display font-semibold text-primary-600 group-hover:text-[#D4993D] transition-colors">
+                <h3 className="text-xl font-display font-semibold text-primary-600 group-hover:text-[var(--theme-gold)] transition-colors">
                   {registry.name}
                 </h3>
                 <p className="text-sm text-primary-400 mt-1">
@@ -81,7 +81,7 @@ const GiftRegistryPage = () => {
               </div>
               <ExternalLink
                 size={18}
-                className="text-primary-300 group-hover:text-[#D4993D] transition-colors flex-shrink-0 ml-4"
+                className="text-primary-300 group-hover:text-[var(--theme-gold)] transition-colors flex-shrink-0 ml-4"
               />
             </motion.a>
           ))}

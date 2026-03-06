@@ -148,7 +148,7 @@ const EventsPage = () => {
       </section>
 
       {/* Venue Information */}
-      <section className="py-20 md:py-32 border-t-4 border-orange bg-primary-500">
+      <section className="py-20 md:py-32 border-t-4 border-[var(--theme-gold)] bg-primary-500">
         <div className="max-w-screen-sm mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -156,16 +156,16 @@ const EventsPage = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           >
-            <h2 className="font-script text-3xl md:text-4xl tracking-tight mb-8 md:mb-12 text-[#E8C84A]">
+            <h2 className="font-script text-3xl md:text-4xl tracking-tight mb-8 md:mb-12 text-[var(--theme-gold-light)]">
               Venue
             </h2>
 
             <div className="space-y-4">
-              <p className="text-lg md:text-xl font-semibold text-cream">
+              <p className="text-lg md:text-xl font-semibold text-white">
                 {content.venue.name}
               </p>
-              <p className="text-sm text-cream/70">{content.venue.address}</p>
-              <p className="text-sm text-cream/70 mt-6">
+              <p className="text-sm text-white/80">{content.venue.address}</p>
+              <p className="text-sm text-white/80 mt-6">
                 Complimentary valet parking available
               </p>
             </div>
