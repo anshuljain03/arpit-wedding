@@ -116,7 +116,7 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const weddingDate = dayjs("2026-04-25 10:00:00");
+    const weddingDate = dayjs("2026-04-23 10:00:00");
 
     const updateCountdown = () => {
       const now = dayjs();
@@ -227,20 +227,6 @@ const Hero = () => {
                 <GoldOrnament width="180px" className="mb-6" />
               </motion.div>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                className="text-base md:text-lg text-[var(--theme-gold)] mb-8 tracking-[0.3em] uppercase"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontWeight: 300,
-                  fontStyle: "italic",
-                }}
-              >
-                Save the Date
-              </motion.p>
-
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -327,7 +313,7 @@ const Hero = () => {
                 }}
                 className="font-sans text-[11px] md:text-xs font-medium tracking-[0.25em] uppercase text-[var(--theme-text-dark)] mb-2"
               >
-                April 24 — 25, 2026
+                April 23 — 24, 2026
               </motion.p>
 
               <motion.p
@@ -344,7 +330,7 @@ const Hero = () => {
                   fontWeight: 300,
                 }}
               >
-                Nashik, Maharashtra
+                Taj Gateway, Nashik
               </motion.p>
 
               <motion.div

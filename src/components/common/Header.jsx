@@ -7,8 +7,6 @@ import { trackClick } from "../../services/analytics";
 const navItems = [
   { id: "home", label: "Home", path: "/" },
   { id: "schedule", label: "Schedule", path: "/schedule" },
-  { id: "rsvp", label: "RSVP", path: "/rsvp" },
-  { id: "travel", label: "Travel", path: "/travel" },
   { id: "gift", label: "Gift", path: "/gift" },
 ];
 

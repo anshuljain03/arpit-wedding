@@ -5,9 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const shortcuts = [
   { key: "1", label: "Home", path: "/" },
   { key: "2", label: "Schedule", path: "/schedule" },
-  { key: "3", label: "RSVP", path: "/rsvp" },
-  { key: "4", label: "Travel", path: "/travel" },
-  { key: "5", label: "Gift", path: "/gift" },
+  { key: "3", label: "Gift", path: "/gift" },
   { key: "E", label: "Gift Editor", path: "/gift/edit" },
 ];
 

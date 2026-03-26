@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Hero from "../components/sections/Hero";
 import Divider from "../components/ui/Divider";
-import { trackPageView, trackClick } from "../services/analytics";
+import { trackPageView } from "../services/analytics";
 
 const HomePage = () => {
+  const [riddleAnswer, setRiddleAnswer] = useState("");
+  const [shake, setShake] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,67 +18,10 @@ const HomePage = () => {
     <>
       <Hero />
 
-      {/* Essential Information - Green Section */}
+      {/* Riddle Section */}
       <section className="hero-panel py-32 relative overflow-hidden">
         <div className="absolute inset-0 batik-bg opacity-20" />
         <div className="max-w-screen-md mx-auto px-6 lg:px-12 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-5xl lg:text-6xl font-script text-[var(--theme-gold-light)] mb-20">
-              Details
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="border-2 border-[var(--theme-gold)]/40 p-6">
-                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-[var(--theme-gold)] mb-3">
-                  Venue
-                </p>
-                <p className="text-lg font-semibold text-white">
-                  Radisson Nashik
-                </p>
-              </div>
-
-              <div className="border-2 border-[var(--theme-gold)]/40 p-6">
-                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-[var(--theme-gold)] mb-3">
-                  When
-                </p>
-                <p className="text-lg font-semibold text-white">
-                  April 24 — 25, 2026
-                </p>
-              </div>
-
-              <div className="border-2 border-[var(--theme-gold)]/40 p-6">
-                <p className="text-xs font-sans font-bold uppercase tracking-[0.3em] text-[var(--theme-gold)] mb-3">
-                  Where
-                </p>
-                <p className="text-lg font-semibold text-white">
-                  Nashik, Maharashtra
-                </p>
-              </div>
-            </div>
-
-            <motion.button
-              onClick={() => {
-                trackClick("Details RSVP Button");
-                navigate("/rsvp");
-              }}
-              className="mt-20 bg-[var(--theme-gold)] hover:bg-[var(--theme-gold)] text-white font-sans text-sm font-bold tracking-[0.2em] uppercase px-12 py-4 border-2 border-[var(--theme-gold-light)] transition-all duration-300 hover:shadow-lg hover:shadow-[var(--theme-gold)]/40 cursor-pointer"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              RSVP Now
-            </motion.button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Closing Statement */}
-      <section className="bg-batik-cream py-32">
-        <div className="max-w-screen-md mx-auto px-6 lg:px-12 text-center">
           <Divider motif="floral" className="mb-12" />
           <motion.div
             initial={{ opacity: 0 }}
@@ -84,14 +29,42 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <p className="font-script text-4xl text-[var(--theme-gold)] mb-6">
-              With Love
+            <p className="font-script text-4xl text-[var(--theme-gold-light)] mb-6">
+              A Little Riddle
             </p>
-            <p className="text-2xl lg:text-3xl font-display font-semibold leading-relaxed text-primary-500">
-              Your presence at our wedding
+            <p className="text-xl lg:text-2xl font-display font-semibold leading-relaxed text-white/80 mb-10 italic">
+              This is the answer to the Universe,
               <br />
-              is the greatest gift of all
+              add a 0 and it becomes nice
             </p>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (riddleAnswer.trim() === "420") {
+                  navigate("/party");
+                } else {
+                  setShake(true);
+                  setTimeout(() => setShake(false), 500);
+                }
+              }}
+              className="flex flex-col items-center gap-4"
+            >
+              <motion.input
+                type="text"
+                value={riddleAnswer}
+                onChange={(e) => setRiddleAnswer(e.target.value)}
+                placeholder="Answer here"
+                className="w-48 text-center px-4 py-3 bg-transparent border-b-2 border-[var(--theme-gold)] text-white font-display text-2xl font-semibold focus:outline-none focus:border-[var(--theme-gold-light)] transition-colors placeholder-white/40"
+                animate={shake ? { x: [-8, 8, -8, 8, 0] } : {}}
+                transition={{ duration: 0.4 }}
+              />
+              <button
+                type="submit"
+                className="mt-2 bg-[var(--theme-gold)] text-white font-sans text-xs font-bold tracking-[0.2em] uppercase px-8 py-3 border-2 border-[var(--theme-gold-light)] transition-all duration-300 hover:shadow-lg hover:shadow-[var(--theme-gold)]/40 cursor-pointer"
+              >
+                Enter
+              </button>
+            </form>
           </motion.div>
         </div>
       </section>

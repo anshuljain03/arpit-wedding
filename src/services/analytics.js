@@ -44,22 +44,6 @@ class Analytics {
     }
   }
 
-  // Identify user (for RSVP tracking)
-  identify(userId, traits = {}) {
-    if (!this.enabled || !this.initialized) return;
-
-    mixpanel.identify(userId);
-    mixpanel.people.set({
-      $name: traits.name,
-      $email: traits.email,
-      $phone: traits.phone,
-      "Guest Count": traits.guestCount,
-      "RSVP Status": traits.rsvpStatus,
-      "Events Attending": traits.eventsAttending,
-      ...traits,
-    });
-  }
-
   // Track page views
   pageView(page, properties = {}) {
     if (!this.enabled || !this.initialized) return;
@@ -131,26 +115,6 @@ class Analytics {
       "Form Name": formName,
       "Error Message": error,
       "Error Time": new Date().toISOString(),
-    });
-  }
-
-  // Track RSVP specific events
-  trackRSVP(action, data = {}) {
-    if (!this.enabled || !this.initialized) return;
-
-    const eventMap = {
-      start: "RSVP Started",
-      complete: "RSVP Completed",
-      update: "RSVP Updated",
-      cancel: "RSVP Cancelled",
-    };
-
-    this.track(eventMap[action] || action, {
-      "Guest Count": data.guestCount,
-      "Meal Preference": data.mealPreference,
-      "Events Attending": data.eventsAttending,
-      "Accommodation Needed": data.accommodationNeeded,
-      ...data,
     });
   }
 
@@ -295,10 +259,8 @@ export const trackEvent = (name, props) => analytics.track(name, props);
 export const trackPageView = (page, props) => analytics.pageView(page, props);
 export const trackClick = (element, props) =>
   analytics.trackClick(element, props);
-export const trackRSVP = (action, data) => analytics.trackRSVP(action, data);
 export const trackError = (msg, stack, component) =>
   analytics.trackError(msg, stack, component);
-export const identifyUser = (id, traits) => analytics.identify(id, traits);
 export const trackExternalLink = (type, dest) =>
   analytics.trackExternalLink(type, dest);
 export const trackCountdownView = (days) => analytics.trackCountdownView(days);
