@@ -31,10 +31,10 @@ const EventsPage = () => {
               <h2 className="font-script text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 text-primary-500">
                 Day One
               </h2>
-              <p className="text-label text-xs">APRIL 24, 2026</p>
+              <p className="text-label text-xs">APRIL 23, 2026</p>
             </motion.div>
 
-            <div className="space-y-8 mb-32 md:mb-48">
+            <div className="space-y-8 mb-16 md:mb-24">
               {content.events.day1.events.map((event, index) => (
                 <motion.div
                   key={index}
@@ -55,11 +55,13 @@ const EventsPage = () => {
                       <h3 className="text-xl md:text-2xl font-display font-semibold mb-4 text-primary-500">
                         {event.name}
                       </h3>
-                      <p className="text-sm md:text-base text-primary-400 leading-relaxed mb-6">
-                        {event.description}
-                      </p>
 
                       <div className="space-y-2">
+                        {event.dressCode && (
+                          <p className="text-sm md:text-base font-semibold italic text-[var(--theme-green)]">
+                            {event.dressCode}
+                          </p>
+                        )}
                         <p className="flex items-center gap-2 text-sm">
                           <MapPin
                             size={14}
@@ -70,11 +72,6 @@ const EventsPage = () => {
                             {event.venue}
                           </span>
                         </p>
-                        {event.dress_code && (
-                          <p className="text-xs font-semibold text-primary-400">
-                            Attire: {event.dress_code}
-                          </p>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -93,7 +90,7 @@ const EventsPage = () => {
               <h2 className="font-script text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 text-primary-500">
                 Day Two
               </h2>
-              <p className="text-label text-xs">APRIL 25, 2026</p>
+              <p className="text-label text-xs">APRIL 24, 2026</p>
             </motion.div>
 
             <div className="space-y-8">
@@ -117,11 +114,13 @@ const EventsPage = () => {
                       <h3 className="text-xl md:text-2xl font-display font-semibold mb-4 text-primary-500">
                         {event.name}
                       </h3>
-                      <p className="text-sm md:text-base text-primary-400 leading-relaxed mb-6">
-                        {event.description}
-                      </p>
 
                       <div className="space-y-2">
+                        {event.dressCode && (
+                          <p className="text-sm md:text-base font-semibold italic text-[var(--theme-green)]">
+                            {event.dressCode}
+                          </p>
+                        )}
                         <p className="flex items-center gap-2 text-sm">
                           <MapPin
                             size={14}
@@ -132,11 +131,6 @@ const EventsPage = () => {
                             {event.venue}
                           </span>
                         </p>
-                        {event.dress_code && (
-                          <p className="text-xs font-semibold text-primary-400">
-                            Attire: {event.dress_code}
-                          </p>
-                        )}
                       </div>
                     </div>
                   </div>

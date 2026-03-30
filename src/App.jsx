@@ -16,7 +16,6 @@ import Loading from "./components/ui/Loading";
 import MusicPlayer from "./components/common/MusicPlayer";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const EventsPage = lazy(() => import("./pages/EventsPage"));
 const PartyPage = lazy(() => import("./pages/PartyPage"));
 const GiftRegistryPage = lazy(() => import("./pages/GiftRegistryPage"));
 const GiftRegistryEditPage = lazy(() => import("./pages/GiftRegistryEditPage"));
@@ -81,7 +80,6 @@ function AppContent() {
         <Suspense fallback={<Loading fullScreen message="Loading page..." />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/schedule" element={<EventsPage />} />
             <Route path="/party" element={<PartyPage />} />
             <Route path="/gift/edit" element={<GiftRegistryEditPage />} />
             <Route path="/gift" element={<GiftRegistryPage />} />

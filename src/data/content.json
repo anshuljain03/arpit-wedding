@@ -33,7 +33,7 @@
       "events": [
         {
           "id": "bhaat-mehendi",
-          "name": "Bhaat, Matki Pooja & Mehendi",
+          "name": "Mehendi & Bhaat",
           "nameHindi": "भात, मटकी पूजा व मेहंदी",
           "time": "1:00 PM onwards",
           "timeIsPlaceholder": false,
@@ -43,15 +43,15 @@
           "venueAddressIsPlaceholder": false,
           "description": "An afternoon of traditional pre-wedding rituals. The Bhaat ceremony blesses the bride, followed by Matki Pooja and beautiful Mehendi application for all guests.",
           "descriptionIsPlaceholder": false,
-          "dressCode": "Traditional Indian Attire, Colorful",
+          "dressCode": "Bright and vibrant Traditionals",
           "dressCodeIsPlaceholder": false,
           "icon": "flower"
         },
         {
           "id": "engagement",
-          "name": "Engagement Party",
+          "name": "Sangeet & Engagement Party",
           "nameHindi": "सगाई समारोह",
-          "time": "8:00 PM onwards",
+          "time": "7:00 PM onwards",
           "timeIsPlaceholder": false,
           "duration": "Till late",
           "venue": "Grand Ball Room Hall",
@@ -59,7 +59,7 @@
           "venueAddressIsPlaceholder": false,
           "description": "An elegant evening celebration with ring ceremony, music, dance performances, and festivities. Join us for dinner, drinks, and dancing!",
           "descriptionIsPlaceholder": false,
-          "dressCode": "Indo-Western, Glamorous & Festive",
+          "dressCode": "Western Bling and Glam",
           "dressCodeIsPlaceholder": false,
           "icon": "sparkles"
         }
@@ -81,7 +81,7 @@
           "venueAddressIsPlaceholder": false,
           "description": "A joyful morning ceremony where turmeric paste is applied to the bride and groom for good luck and blessings. Get ready to get colorful!",
           "descriptionIsPlaceholder": false,
-          "dressCode": "Yellow/Light Colors (will get turmeric stains!)",
+          "dressCode": "Sunset florals",
           "dressCodeIsPlaceholder": false,
           "icon": "sun"
         },
@@ -97,7 +97,7 @@
           "venueAddressIsPlaceholder": false,
           "description": "The groom's grand wedding procession with music, dhol beats, dancing, and celebration. Join us for this high-energy celebration!",
           "descriptionIsPlaceholder": false,
-          "dressCode": "Festive Traditional Wear",
+          "dressCode": "Royal Traditionals",
           "dressCodeIsPlaceholder": false,
           "icon": "horse"
         },
@@ -113,7 +113,7 @@
           "venueAddressIsPlaceholder": false,
           "description": "Exchange of floral garlands followed by the reception celebration. Witness the beautiful Jaimala ceremony and then enjoy dinner, toasts, and dancing!",
           "descriptionIsPlaceholder": false,
-          "dressCode": "Traditional Wedding Attire / Formal",
+          "dressCode": "Royal Traditionals",
           "dressCodeIsPlaceholder": false,
           "icon": "flower2"
         },
@@ -129,7 +129,7 @@
           "venueAddressIsPlaceholder": false,
           "description": "The sacred wedding ceremony where the couple takes seven pheras around the holy fire, with each circle representing a vow for their married life.",
           "descriptionIsPlaceholder": false,
-          "dressCode": "Traditional Formal Attire",
+          "dressCode": "Royal Traditionals",
           "dressCodeIsPlaceholder": false,
           "icon": "flame"
         }

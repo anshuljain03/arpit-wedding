@@ -6,7 +6,6 @@ import { trackClick } from "../../services/analytics";
 
 const navItems = [
   { id: "home", label: "Home", path: "/" },
-  { id: "schedule", label: "Schedule", path: "/schedule" },
   { id: "gift", label: "Gift", path: "/gift" },
 ];
 
@@ -78,20 +77,24 @@ const Header = () => {
           opacity: showNav ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="fixed bottom-6 right-4 z-50 md:hidden w-11 h-11 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-[var(--theme-gold)]/20 flex items-center justify-center cursor-pointer"
+        className="fixed bottom-6 right-4 z-50 md:hidden rounded-full bg-white/90 backdrop-blur-md shadow-md border-2 border-[var(--theme-gold)]/40 flex items-center justify-center cursor-pointer px-4 py-2.5 gap-2"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label="Toggle menu"
       >
         <motion.div
           animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
           transition={{ duration: 0.3 }}
+          className="flex items-center"
         >
           {isMobileMenuOpen ? (
-            <X size={18} strokeWidth={2} className="text-primary-600" />
+            <X size={20} strokeWidth={2.5} className="text-[var(--theme-green-dark)]" />
           ) : (
-            <Menu size={18} strokeWidth={2} className="text-primary-600" />
+            <Menu size={20} strokeWidth={2.5} className="text-[var(--theme-green-dark)]" />
           )}
         </motion.div>
+        <span className="text-xs font-sans font-bold uppercase tracking-[0.15em] text-[var(--theme-green-dark)]">
+          {isMobileMenuOpen ? "Close" : "Gift"}
+        </span>
       </motion.button>
 
       {/* Mobile menu drawer */}
