@@ -63,13 +63,11 @@ const PartyPage = () => {
 
         {/* Title */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }}
           className="text-6xl md:text-8xl lg:text-9xl font-black text-white text-center mb-16 md:mb-24"
           style={{ fontFamily: "'Playfair Display', serif" }}
-          animate={{ opacity: [1, 0, 1] }}
-          transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }}
         >
           Party Itirenary
         </motion.h1>
@@ -127,7 +125,7 @@ const PartyPage = () => {
           </h3>
           <p
             className="text-xl md:text-2xl font-bold"
-            style={{ color: "#5b21b6", fontFamily: "'Playfair Display', serif" }}
+            style={{ color: "#00ffff", fontFamily: "'Playfair Display', serif" }}
           >
             Welcome Drinks & Drags @ Arpit's suite
           </p>
@@ -143,7 +141,7 @@ const PartyPage = () => {
         >
           <p
             className="text-xl md:text-2xl"
-            style={{ color: "#5b21b6", fontFamily: "'Inter', sans-serif" }}
+            style={{ color: "#00ffff", fontFamily: "'Inter', sans-serif" }}
           >
             Dance Practice - choreographed by Iron Man
           </p>
@@ -264,7 +262,7 @@ const PartyPage = () => {
           </p>
           <p
             className="text-lg md:text-xl"
-            style={{ color: "#7dd3fc", fontFamily: "'Inter', sans-serif" }}
+            style={{ color: "#00ffff", fontFamily: "'Inter', sans-serif" }}
           >
             Get ready for Baarat
           </p>
