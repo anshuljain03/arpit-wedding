@@ -203,7 +203,7 @@ const PartyPage = () => {
         {/* Dance Practice */}
         <div className="mb-10 mt-6">
           <p
-            style={{ color: "#00ffff", fontFamily: "'Gulfs Display', serif", fontSize: "clamp(1.5rem, 3.5vw, 3.5rem)" }}
+            style={{ color: "#00ffff", fontFamily: "'Garet', sans-serif", fontSize: "clamp(1.5rem, 3.5vw, 3.5rem)" }}
           >
             Dance Practice - choreographed by Iron Man
           </p>
@@ -244,7 +244,7 @@ const PartyPage = () => {
             Party #3
           </h3>
           <p
-            style={{ color: "#3b3bbe", fontFamily: "'Gulfs Display', serif", fontSize: "clamp(1.8rem, 4.5vw, 5rem)" }}
+            style={{ color: "#5b4ce0", fontFamily: "'Gulfs Display', serif", fontSize: "clamp(1.8rem, 4.5vw, 5rem)" }}
           >
             After Party @ Arpit's suite, No Naniji here
           </p>
@@ -315,7 +315,7 @@ const PartyPage = () => {
             Baarat - 5 PM
           </h4>
           <p
-            style={{ color: "#ef4444", fontFamily: "'Gulfs Display', serif", fontSize: "clamp(1.4rem, 3.5vw, 3.5rem)" }}
+            style={{ color: "#ef4444", fontFamily: "'Garet', sans-serif", fontSize: "clamp(1.4rem, 3.5vw, 3.5rem)" }}
           >
             Dance till your legs fall off
           </p>

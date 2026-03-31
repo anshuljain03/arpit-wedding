@@ -1,6 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#d4993d"/>
-  <text x="16" y="13" font-family="Georgia, serif" font-size="7" font-weight="600" text-anchor="middle" fill="#fff5e6" letter-spacing="0.5">PRERNA</text>
-  <text x="16" y="19.5" font-family="Georgia, serif" font-size="5" text-anchor="middle" fill="#fff5e6" opacity="0.8">&amp;</text>
-  <text x="16" y="26" font-family="Georgia, serif" font-size="7" font-weight="600" text-anchor="middle" fill="#fff5e6" letter-spacing="0.5">ARPIT</text>
+  <text x="16" y="22" font-family="Georgia, serif" font-size="16" font-weight="700" text-anchor="middle" fill="#d4993d">PA</text>
 </svg>
