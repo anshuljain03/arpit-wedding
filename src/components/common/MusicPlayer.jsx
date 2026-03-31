@@ -17,7 +17,7 @@ const MusicPlayer = () => {
   useEffect(() => {
     const audio = new Audio(`${basePath}river-flows-in-you.mp3`);
     audio.loop = true;
-    audio.volume = 0.4;
+    audio.volume = 0.7;
     audio.currentTime = 15;
     audioRef.current = audio;
 

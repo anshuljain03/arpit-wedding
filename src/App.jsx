@@ -17,7 +17,6 @@ import MusicPlayer from "./components/common/MusicPlayer";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const PartyPage = lazy(() => import("./pages/PartyPage"));
-const GiftRegistryPage = lazy(() => import("./pages/GiftRegistryPage"));
 const GiftRegistryEditPage = lazy(() => import("./pages/GiftRegistryEditPage"));
 
 const isInputFocused = () => {
@@ -82,7 +81,6 @@ function AppContent() {
             <Route path="/" element={<HomePage />} />
             <Route path="/party" element={<PartyPage />} />
             <Route path="/gift/edit" element={<GiftRegistryEditPage />} />
-            <Route path="/gift" element={<GiftRegistryPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>

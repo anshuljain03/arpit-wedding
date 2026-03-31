@@ -6,7 +6,6 @@ import { trackClick } from "../../services/analytics";
 
 const navItems = [
   { id: "home", label: "Home", path: "/" },
-  { id: "gift", label: "Gift", path: "/gift" },
 ];
 
 const Header = () => {
@@ -16,18 +15,11 @@ const Header = () => {
   const isHome = location.pathname === "/" || location.pathname === "";
 
   useEffect(() => {
-    if (!isHome) {
-      setShowNav(true);
+    if (isHome) {
+      setShowNav(false);
       return;
     }
-
-    const handleScroll = () => {
-      setShowNav(window.scrollY > window.innerHeight * 0.8);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    setShowNav(true);
   }, [isHome]);
 
   useEffect(() => {
@@ -93,7 +85,7 @@ const Header = () => {
           )}
         </motion.div>
         <span className="text-xs font-sans font-bold uppercase tracking-[0.15em] text-[var(--theme-green-dark)]">
-          {isMobileMenuOpen ? "Close" : "Gift"}
+          {isMobileMenuOpen ? "Close" : "Home"}
         </span>
       </motion.button>
 

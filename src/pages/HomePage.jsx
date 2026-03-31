@@ -1,15 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { MapPin } from "lucide-react";
+import { MapPin, ExternalLink } from "lucide-react";
 import Hero from "../components/sections/Hero";
 import Divider from "../components/ui/Divider";
 import content from "../data/content.json";
-import { trackPageView } from "../services/analytics";
+import { trackPageView, trackClick } from "../services/analytics";
+
+const DEFAULT_REGISTRIES = [
+  {
+    name: "Amazon Wish List",
+    url: "https://www.amazon.in/hz/wishlist/ls/25M96EYB8ASKR?ref_=wl_share",
+  },
+];
 
 const HomePage = () => {
-  const [riddleAnswer, setRiddleAnswer] = useState("");
+  const [digits, setDigits] = useState(["", "", ""]);
   const [shake, setShake] = useState(false);
+  const digitRefs = [React.useRef(null), React.useRef(null), React.useRef(null)];
+
+  const handleDigitChange = (index, value) => {
+    if (value.length > 1) value = value.slice(-1);
+    if (value && !/^\d$/.test(value)) return;
+    const newDigits = [...digits];
+    newDigits[index] = value;
+    setDigits(newDigits);
+    if (value && index < 2) {
+      digitRefs[index + 1].current?.focus();
+    }
+  };
+
+  const handleDigitKeyDown = (index, e) => {
+    if (e.key === "Backspace" && !digits[index] && index > 0) {
+      digitRefs[index - 1].current?.focus();
+    }
+  };
+
+  const riddleAnswer = digits.join("");
+  const registries = DEFAULT_REGISTRIES;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,7 +83,7 @@ const HomePage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="relative border-l-4 border-orange pl-8 bg-white p-6 border-t border-r border-b border-t-orange/20 border-r-orange/20 border-b-orange/20"
+                  className="relative bg-white p-6 border border-orange"
                 >
                   <div className="grid md:grid-cols-3 gap-6 md:gap-8">
                     <div className="md:text-right">
@@ -114,7 +142,7 @@ const HomePage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="relative border-l-4 border-orange pl-8 bg-white p-6 border-t border-r border-b border-t-orange/20 border-r-orange/20 border-b-orange/20"
+                  className="relative bg-white p-6 border border-orange"
                 >
                   <div className="grid md:grid-cols-3 gap-6 md:gap-8">
                     <div className="md:text-right">
@@ -155,10 +183,78 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Gift Registry Section */}
+      <section className="py-20 md:py-32 bg-batik-cream batik-bg border-y-4 border-[var(--theme-gold)]">
+        <div className="max-w-screen-sm mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+            className="text-center mb-16"
+          >
+            <h2
+              className="text-5xl lg:text-6xl text-[var(--theme-gold)] mb-4"
+              style={{ fontFamily: "'Cormorant SC', serif", fontWeight: 600 }}
+            >
+              Gift Registry
+            </h2>
+            <Divider motif="floral" className="my-6" />
+            <p
+              className="text-lg text-primary-500 leading-relaxed"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            >
+              Your presence at our wedding is the greatest gift of all. However,
+              if you wish to honour us with a gift, please use our Amazon Wishlist.
+            </p>
+          </motion.div>
+
+          <div className="space-y-4">
+            {registries.map((registry, index) => (
+              <motion.a
+                key={registry.name}
+                href={registry.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  trackClick("Gift Registry Link", { registry: registry.name })
+                }
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group flex items-center justify-center bg-white border border-orange px-8 py-6 transition-all duration-300 hover:border-[var(--theme-gold)]/50 hover:shadow-sm"
+              >
+                <div>
+                  <h3 className="text-xl font-display font-semibold text-primary-600 group-hover:text-[var(--theme-gold)] transition-colors">
+                    {registry.name}
+                  </h3>
+                  {registry.description && (
+                    <p className="text-sm text-primary-400 mt-1 mb-0">
+                      {registry.description}
+                    </p>
+                  )}
+                </div>
+                <ExternalLink
+                  size={18}
+                  className="text-primary-300 group-hover:text-[var(--theme-gold)] transition-colors flex-shrink-0 ml-4"
+                />
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Riddle Section */}
       <section className="hero-panel py-32 relative overflow-hidden">
         <div className="absolute inset-0 batik-bg opacity-20" />
         <div className="max-w-screen-md mx-auto px-6 lg:px-12 text-center relative z-10">
+          <h2
+            className="text-5xl lg:text-6xl text-[var(--theme-gold-light)] mb-4"
+            style={{ fontFamily: "'Cormorant SC', serif", fontWeight: 600 }}
+          >
+            A Little Riddle
+          </h2>
           <Divider motif="floral" className="mb-12" />
           <motion.div
             initial={{ opacity: 0 }}
@@ -166,9 +262,6 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <p className="font-script text-4xl text-[var(--theme-gold-light)] mb-6">
-              A Little Riddle
-            </p>
             <p className="text-xl lg:text-2xl font-display font-semibold leading-relaxed text-white/80 mb-10 italic">
               This is the answer to the Universe,
               <br />
@@ -186,15 +279,25 @@ const HomePage = () => {
               }}
               className="flex flex-col items-center gap-4"
             >
-              <motion.input
-                type="text"
-                value={riddleAnswer}
-                onChange={(e) => setRiddleAnswer(e.target.value)}
-                placeholder="Answer here"
-                className="w-48 text-center px-4 py-3 bg-transparent border-b-2 border-[var(--theme-gold)] text-white font-display text-2xl font-semibold focus:outline-none focus:border-[var(--theme-gold-light)] transition-colors placeholder-white/40"
+              <motion.div
+                className="flex items-center justify-center gap-3"
                 animate={shake ? { x: [-8, 8, -8, 8, 0] } : {}}
                 transition={{ duration: 0.4 }}
-              />
+              >
+                {digits.map((digit, i) => (
+                  <input
+                    key={i}
+                    ref={digitRefs[i]}
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={1}
+                    value={digit}
+                    onChange={(e) => handleDigitChange(i, e.target.value)}
+                    onKeyDown={(e) => handleDigitKeyDown(i, e)}
+                    className="w-14 h-16 text-center bg-transparent border-2 border-[var(--theme-gold)] text-white font-display text-3xl font-semibold focus:outline-none focus:border-[var(--theme-gold-light)] transition-colors rounded"
+                  />
+                ))}
+              </motion.div>
               <button
                 type="submit"
                 className="mt-2 bg-[var(--theme-gold)] text-white font-sans text-xs font-bold tracking-[0.2em] uppercase px-8 py-3 border-2 border-[var(--theme-gold-light)] transition-all duration-300 hover:shadow-lg hover:shadow-[var(--theme-gold)]/40 cursor-pointer"
