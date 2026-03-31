@@ -85,7 +85,7 @@ const HomePage = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="relative bg-white p-6 border border-orange"
                 >
-                  <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+                  <div className="grid md:grid-cols-3 gap-6 md:gap-8 text-center md:text-left">
                     <div className="md:text-right">
                       <p className="font-display text-2xl md:text-3xl font-semibold text-orange">
                         {event.time}
@@ -103,7 +103,7 @@ const HomePage = () => {
                             {event.dressCode}
                           </p>
                         )}
-                        <p className="flex items-center gap-2 text-sm">
+                        <p className="flex items-center justify-center md:justify-start gap-2 text-sm">
                           <MapPin
                             size={14}
                             strokeWidth={2}
@@ -144,7 +144,7 @@ const HomePage = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="relative bg-white p-6 border border-orange"
                 >
-                  <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+                  <div className="grid md:grid-cols-3 gap-6 md:gap-8 text-center md:text-left">
                     <div className="md:text-right">
                       <p className="font-display text-2xl md:text-3xl font-semibold text-orange">
                         {event.time}
@@ -162,7 +162,7 @@ const HomePage = () => {
                             {event.dressCode}
                           </p>
                         )}
-                        <p className="flex items-center gap-2 text-sm">
+                        <p className="flex items-center justify-center md:justify-start gap-2 text-sm">
                           <MapPin
                             size={14}
                             strokeWidth={2}
@@ -223,21 +223,14 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group flex items-center justify-center bg-white border border-orange px-8 py-6 transition-all duration-300 hover:border-[var(--theme-gold)]/50 hover:shadow-sm"
+                className="group flex items-center justify-center gap-2 bg-white border border-orange px-8 py-4 transition-all duration-300 hover:border-[var(--theme-gold)]/50 hover:shadow-sm"
               >
-                <div>
-                  <h3 className="text-xl font-display font-semibold text-primary-600 group-hover:text-[var(--theme-gold)] transition-colors">
+                <h3 className="text-xl font-display font-semibold text-primary-600 group-hover:text-[var(--theme-gold)] transition-colors mb-0">
                     {registry.name}
                   </h3>
-                  {registry.description && (
-                    <p className="text-sm text-primary-400 mt-1 mb-0">
-                      {registry.description}
-                    </p>
-                  )}
-                </div>
                 <ExternalLink
                   size={18}
-                  className="text-primary-300 group-hover:text-[var(--theme-gold)] transition-colors flex-shrink-0 ml-4"
+                  className="text-primary-300 group-hover:text-[var(--theme-gold)] transition-colors flex-shrink-0"
                 />
               </motion.a>
             ))}
@@ -263,9 +256,9 @@ const HomePage = () => {
             transition={{ duration: 1 }}
           >
             <p className="text-xl lg:text-2xl font-display font-semibold leading-relaxed text-white/80 mb-10 italic">
-              This is the answer to the Universe,
+              The answer to life, the universe, and everything -
               <br />
-              add a 0 and it becomes nice
+              just add a whiff of nothing and you'll have it...
             </p>
             <form
               onSubmit={(e) => {

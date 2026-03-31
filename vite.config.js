@@ -35,14 +35,8 @@ function flowerSavePlugin() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [flowerSavePlugin(), react()],
-  base: "/wedding/",
-  server: {
-    // This ensures the dev server handles the base path correctly
-    // and redirects properly for SPA routing
-    historyApiFallback: {
-      index: "/wedding/index.html",
-    },
-  },
+  base: "/",
+  server: {},
   build: {
     outDir: "dist",
     assetsDir: "assets",

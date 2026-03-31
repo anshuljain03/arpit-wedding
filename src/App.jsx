@@ -73,7 +73,7 @@ function AppContent() {
   }
 
   return (
-      <div className="min-h-screen bg-batik-cream">
+      <div className="min-h-screen bg-batik-cream overflow-x-hidden">
         <Header />
 
         <Suspense fallback={<Loading fullScreen message="Loading page..." />}>
@@ -97,7 +97,7 @@ function AppContent() {
 
 function App() {
   return (
-    <Router basename="/wedding">
+    <Router basename="/">
       <AppContent />
     </Router>
   );

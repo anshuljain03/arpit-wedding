@@ -404,10 +404,10 @@
       {
         "id": "b2",
         "src": "flower-purple.png",
-        "x": 74,
-        "y": 14,
-        "width": 30,
-        "rotation": 54,
+        "x": 80,
+        "y": 8,
+        "width": 42,
+        "rotation": 50,
         "scaleX": -1,
         "opacity": 1,
         "cluster": "bottom"
@@ -415,10 +415,10 @@
       {
         "id": "b3",
         "src": "flower-purple.png",
-        "x": 58,
-        "y": 19,
-        "width": 38,
-        "rotation": 56,
+        "x": 66,
+        "y": 16,
+        "width": 36,
+        "rotation": 55,
         "scaleX": -1,
         "opacity": 1,
         "cluster": "bottom"
@@ -426,10 +426,10 @@
       {
         "id": "b4",
         "src": "flower-purple.png",
-        "x": 38,
-        "y": 25,
-        "width": 40,
-        "rotation": 65,
+        "x": 52,
+        "y": 21,
+        "width": 42,
+        "rotation": 58,
         "scaleX": -1,
         "opacity": 1,
         "cluster": "bottom"
@@ -437,10 +437,10 @@
       {
         "id": "b5",
         "src": "flower-purple.png",
-        "x": 16,
-        "y": 29,
-        "width": 32,
-        "rotation": 67,
+        "x": 38,
+        "y": 25,
+        "width": 38,
+        "rotation": 65,
         "scaleX": -1,
         "opacity": 1,
         "cluster": "bottom"
@@ -448,16 +448,38 @@
       {
         "id": "b6",
         "src": "flower-purple.png",
-        "x": -6,
-        "y": 33,
-        "width": 32,
-        "rotation": 64,
+        "x": 22,
+        "y": 28,
+        "width": 40,
+        "rotation": 62,
         "scaleX": -1,
         "opacity": 1,
         "cluster": "bottom"
       },
       {
         "id": "b7",
+        "src": "flower-purple.png",
+        "x": 6,
+        "y": 31,
+        "width": 36,
+        "rotation": 67,
+        "scaleX": -1,
+        "opacity": 1,
+        "cluster": "bottom"
+      },
+      {
+        "id": "b8",
+        "src": "flower-purple.png",
+        "x": -10,
+        "y": 33,
+        "width": 38,
+        "rotation": 64,
+        "scaleX": -1,
+        "opacity": 1,
+        "cluster": "bottom"
+      },
+      {
+        "id": "b9",
         "src": "flower-coral.png",
         "x": 96,
         "y": -12,
@@ -468,7 +490,7 @@
         "cluster": "bottom"
       },
       {
-        "id": "b8",
+        "id": "b10",
         "src": "flower-coral.png",
         "x": 78,
         "y": -16,
@@ -479,9 +501,9 @@
         "cluster": "bottom"
       },
       {
-        "id": "b9",
+        "id": "b11",
         "src": "flower-coral.png",
-        "x": 56,
+        "x": 58,
         "y": -6,
         "width": 14,
         "rotation": 5,
@@ -490,23 +512,56 @@
         "cluster": "bottom"
       },
       {
-        "id": "b10",
+        "id": "b12",
         "src": "flower-coral.png",
-        "x": 36,
+        "x": 42,
         "y": 0,
-        "width": 19,
+        "width": 16,
         "rotation": -2,
         "scaleX": 1,
         "opacity": 1,
         "cluster": "bottom"
       },
       {
-        "id": "b11",
+        "id": "b13",
         "src": "flower-coral.png",
-        "x": 14,
-        "y": 2,
+        "x": 24,
+        "y": 4,
         "width": 14,
         "rotation": 3,
+        "scaleX": 1,
+        "opacity": 1,
+        "cluster": "bottom"
+      },
+      {
+        "id": "b14",
+        "src": "flower-coral.png",
+        "x": 88,
+        "y": -24,
+        "width": 14,
+        "rotation": 2,
+        "scaleX": 1,
+        "opacity": 1,
+        "cluster": "bottom"
+      },
+      {
+        "id": "b15",
+        "src": "flower-purple.png",
+        "x": -22,
+        "y": 36,
+        "width": 36,
+        "rotation": 68,
+        "scaleX": -1,
+        "opacity": 1,
+        "cluster": "bottom"
+      },
+      {
+        "id": "b16",
+        "src": "flower-coral.png",
+        "x": 6,
+        "y": 2,
+        "width": 14,
+        "rotation": -3,
         "scaleX": 1,
         "opacity": 1,
         "cluster": "bottom"
