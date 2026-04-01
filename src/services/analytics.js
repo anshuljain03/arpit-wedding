@@ -16,7 +16,7 @@ class Analytics {
         track_pageview: true,
         persistence: "localStorage",
         ignore_dnt: false,
-        api_host: "https://api-eu.mixpanel.com",
+        api_host: "https://api.mixpanel.com",
         loaded: (mixpanel) => {
           // Set super properties that will be sent with every event
           mixpanel.register({
